@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Das Gupta - Electrical & Electronics Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark background */
+            color: #E5E7EB; /* Light text */
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .section-heading {
+            color: #F9FAFB;
+        }
+        .link-hover {
+            transition: color 0.3s ease;
+        }
+        .link-hover:hover {
+            color: #38BDF8; /* Light blue on hover */
+        }
+        .tag {
+            background-color: #38BDF8;
+            color: #111827;
+        }
+        .card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center glass-effect">
+            <div class="text-2xl font-bold text-white">
+                <a href="#">Aditya Das Gupta</a>
+            </div>
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="#about" class="link-hover">About</a>
+                <a href="#skills" class="link-hover">Skills</a>
+                <a href="#experience" class="link-hover">Experience</a>
+                <a href="#education" class="link-hover">Education</a>
+                <a href="#contact" class="link-hover">Contact</a>
+            </div>
+            <div class="md:hidden">
+                 <!-- Mobile menu can be added here if needed -->
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section id="home" class="flex flex-col md:flex-row items-center my-12 md:my-24">
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Aditya Das Gupta</h1>
+                <p class="text-2xl mt-2 text-sky-300">Electrical & Electronics Engineer</p>
+                <p class="mt-4 text-lg text-gray-300 max-w-xl">
+                    A recent graduate with a passion for leveraging technology to solve real-world problems, specializing in Explainable AI and its applications in medical technology.
+                </p>
+                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                    <a href="mailto:aditya.duengg@bec.edu.bd" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
+                        <i data-lucide="mail" class="mr-2 h-5 w-5"></i> Email Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
+                        <i data-lucide="linkedin" class="mr-2 h-5 w-5"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+                <!-- Placeholder for a professional photo -->
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gray-700 border-4 border-sky-400 flex items-center justify-center">
+                    <span class="text-gray-400">Your Photo Here</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">About Me</h2>
+            <div class="max-w-4xl mx-auto card p-8 rounded-xl">
+                <p class="text-lg leading-relaxed">
+                    I am an Electrical and Electronics Engineer from Barisal Engineering College with a strong academic background and hands-on research experience. My undergraduate thesis focused on creating an Explainable AI framework for non-invasive blood glucose prediction, which has been accepted for publication. I possess a diverse technical skill set, including proficiency in engineering software, programming, and design tools. My leadership roles in various college clubs have honed my project management, team collaboration, and communication skills. I am eager to apply my knowledge and skills to a challenging role in the engineering field.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Technical Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Engineering Software -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="cpu" class="h-8 w-8 text-sky-400"></i>
+                        <h3 class="text-2xl font-semibold ml-4 text-white">Engineering Software</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">AutoCAD</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">LTspice</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Proteus</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Microwind</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Tanner EDA</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span>
+                    </div>
+                </div>
+                <!-- Programming & Simulation -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="code-2" class="h-8 w-8 text-sky-400"></i>
+                        <h3 class="text-2xl font-semibold ml-4 text-white">Programming & Simulation</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">C++</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Java</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">MATLAB</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Visual Studio</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Anaconda</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Google Colab</span>
+                    </div>
+                </div>
+                <!-- Design & Video -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="palette" class="h-8 w-8 text-sky-400"></i>
+                        <h3 class="text-2xl font-semibold ml-4 text-white">Design & Video</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Photoshop</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Illustrator</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Canva</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Premiere Pro</span>
+                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe After Effects</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Publications Section -->
+        <section id="experience" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Research & Publications</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="card p-8 rounded-xl mb-8">
+                    <p class="text-sky-400 text-sm font-medium">September 2024 - August 2025</p>
+                    <h3 class="text-2xl font-semibold text-white mt-2">Undergraduate Thesis</h3>
+                    <p class="mt-2 text-lg font-bold">An Explainable AI Framework for Non-Invasive Blood Glucose Prediction and Hypoglycemia Detection.</p>
+                    <p class="mt-3 text-gray-300">Conducted research to develop an innovative AI model for blood glucose monitoring. The work focused on enhancing model interpretability using XAI techniques. Supervised by Md. Israil Hossain at Barisal Engineering College.</p>
+                </div>
+                 <div class="card p-8 rounded-xl">
+                    <p class="text-sky-400 text-sm font-medium">ICMCEL 2025 [Accepted]</p>
+                    <h3 class="text-2xl font-semibold text-white mt-2">Conference Publication</h3>
+                    <p class="mt-2 text-lg font-bold">"A Feature-Optimized Approach for Blood Glucose Forecasting Using Explainable AI (XAI)"</p>
+                    <p class="mt-3 text-gray-300">This paper, based on my thesis research, has been accepted for presentation at the International Conference on Multidisciplinary Computer Science, Electrical, Business & Literature.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Education</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6 rounded-xl">
+                    <p class="text-sky-400 text-sm">2019 - 2025</p>
+                    <h3 class="text-xl font-bold text-white mt-2">B.Sc. in Electrical and Electronic Engineering</h3>
+                    <p class="text-gray-300 mt-1">Barisal Engineering College (BEC)</p>
+                    <p class="mt-2 font-semibold">GPA: 3.23 / 4.00</p>
+                </div>
+                <div class="card p-6 rounded-xl">
+                    <p class="text-sky-400 text-sm">2017 - 2020</p>
+                    <h3 class="text-xl font-bold text-white mt-2">Higher Secondary Certificate (HSC), Science</h3>
+                    <p class="text-gray-300 mt-1">Chattogram Cantonment Public College (CCPC)</p>
+                    <p class="mt-2 font-semibold">GPA: 4.92 / 5.00</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 text-center">
+            <h2 class="text-4xl font-bold mb-4 section-heading">Get In Touch</h2>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">I'm currently looking for new opportunities and would be happy to discuss how I can contribute to your team. Feel free to reach out!</p>
+            <a href="mailto:aditya.duengg@bec.edu.bd" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-xl">
+                Contact Me
+            </a>
+            <div class="mt-12 flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="text-gray-400 hover:text-sky-400 transition">
+                    <i data-lucide="linkedin" class="h-8 w-8"></i>
+                </a>
+                <a href="mailto:aditya.duengg@bec.edu.bd" class="text-gray-400 hover:text-sky-400 transition">
+                    <i data-lucide="mail" class="h-8 w-8"></i>
+                </a>
+                <a href="tel:+8801880301030" class="text-gray-400 hover:text-sky-400 transition">
+                    <i data-lucide="phone" class="h-8 w-8"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
