@@ -12,6 +12,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* Dark background */
             color: #E5E7EB; /* Light text */
+            cursor: none; /* Hide default cursor */
         }
         .glass-effect {
             background: rgba(17, 24, 39, 0.8);
@@ -24,23 +25,27 @@
         .link-hover {
             position: relative;
             transition: color 0.3s ease;
+            padding-bottom: 6px;
         }
         .link-hover:after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -4px;
+            bottom: 0;
             left: 50%;
+            transform: translateX(-50%);
             background-color: #38BDF8;
             transition: all 0.3s ease-out;
         }
         .link-hover:hover {
-            color: #38BDF8; /* Light blue on hover */
+            color: #38BDF8;
         }
-        .link-hover:hover:after {
+        .link-hover:hover:after, .nav-active:after {
             width: 100%;
-            left: 0;
+        }
+        .nav-active {
+            color: #38BDF8; /* sky-400 */
         }
         .tag {
             background-color: #374151;
@@ -55,27 +60,16 @@
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
         }
-        /* Typing animation */
-        .typed-cursor {
-            opacity: 1;
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        /* Reveal on scroll */
+        .typed-cursor { animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Animated Gradient */
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        
         .animated-gradient {
             background: linear-gradient(300deg, #111827, #1e3a8a, #111827);
             background-size: 180% 180%;
@@ -86,9 +80,34 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #38BDF8;
+            border-radius: 50%;
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
+            z-index: 9999;
+        }
+        .cursor-grow {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(56, 189, 248, 0.2);
+            border-width: 1px;
+        }
+        /* Hide custom cursor on touch devices */
+        @media (hover: none) {
+            .cursor { display: none; }
+            body { cursor: auto; }
+        }
     </style>
 </head>
 <body class="antialiased">
+    <div class="cursor"></div>
 
     <!-- Header & Navigation -->
     <header class="sticky top-0 z-50 glass-effect">
@@ -96,30 +115,26 @@
             <div class="text-2xl font-bold text-white">
                 <a href="#">Aditya Das Gupta</a>
             </div>
-            <div class="hidden md:flex space-x-3 text-sm lg:space-x-4 lg:text-base">
+            <div class="hidden md:flex space-x-2 text-sm lg:space-x-3 lg:text-base">
                 <a href="#about" class="link-hover">About</a>
                 <a href="#skills" class="link-hover">Skills</a>
-                <a href="#competencies" class="link-hover">Competencies</a>
                 <a href="#experience" class="link-hover">Experience</a>
+                <a href="#projects" class="link-hover">Projects</a>
                 <a href="#training" class="link-hover">Training</a>
                 <a href="#leadership" class="link-hover">Leadership</a>
                 <a href="#education" class="link-hover">Education</a>
                 <a href="#references" class="link-hover">References</a>
                 <a href="#contact" class="link-hover">Contact</a>
             </div>
-            <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                <button id="menu-btn" class="text-white focus:outline-none">
-                    <i data-lucide="menu" class="h-6 w-6"></i>
-                </button>
+                <button id="menu-btn" class="text-white focus:outline-none"><i data-lucide="menu" class="h-6 w-6"></i></button>
             </div>
         </nav>
-         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
             <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-700">About</a>
             <a href="#skills" class="block py-2 px-6 text-sm hover:bg-gray-700">Skills</a>
-            <a href="#competencies" class="block py-2 px-6 text-sm hover:bg-gray-700">Competencies</a>
             <a href="#experience" class="block py-2 px-6 text-sm hover:bg-gray-700">Experience</a>
+            <a href="#projects" class="block py-2 px-6 text-sm hover:bg-gray-700">Projects</a>
             <a href="#training" class="block py-2 px-6 text-sm hover:bg-gray-700">Training</a>
             <a href="#leadership" class="block py-2 px-6 text-sm hover:bg-gray-700">Leadership</a>
             <a href="#education" class="block py-2 px-6 text-sm hover:bg-gray-700">Education</a>
@@ -131,23 +146,19 @@
     <main class="container mx-auto px-6">
 
         <!-- Hero Section -->
-        <section id="home" class="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-68px)] animated-gradient">
-            <div class="md:w-1/2 text-center">
-                 <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center mb-8 mx-auto">
+        <section id="home" class="flex flex-col items-center justify-center min-h-[calc(100vh-68px)] animated-gradient">
+            <div class="text-center">
+                 <div class="flex justify-center mb-8">
                     <img src="profile.jpg" alt="A professional photo of Aditya Das Gupta" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-sky-400 shadow-2xl">
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Aditya Das Gupta</h1>
-                <p class="text-2xl mt-2 text-sky-300"><span id="typed-text"></span></p>
+                <p class="text-2xl mt-2 text-sky-300 h-8"><span id="typed-text"></span></p>
                 <p class="mt-4 text-lg text-gray-300 max-w-xl mx-auto">
                     A recent graduate with a passion for leveraging technology to solve real-world problems, specializing in Explainable AI and its applications in medical technology.
                 </p>
                 <div class="mt-8 flex justify-center space-x-4">
-                    <a href="mailto:aditya.duengg@bec.edu.bd" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
-                        <i data-lucide="mail" class="mr-2 h-5 w-5"></i> Email Me
-                    </a>
-                    <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
-                        <i data-lucide="linkedin" class="mr-2 h-5 w-5"></i> LinkedIn
-                    </a>
+                    <a href="mailto:aditya.duengg@bec.edu.bd" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center"><i data-lucide="mail" class="mr-2 h-5 w-5"></i> Email Me</a>
+                    <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center"><i data-lucide="linkedin" class="mr-2 h-5 w-5"></i> LinkedIn</a>
                 </div>
             </div>
         </section>
@@ -155,77 +166,38 @@
         <!-- About Section -->
         <section id="about" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">About Me</h2>
-            <div class="max-w-4xl mx-auto card p-8 rounded-xl">
-                <p class="text-lg leading-relaxed">
-                    I am an Electrical and Electronics Engineer from Barisal Engineering College with a strong academic background and hands-on research experience. My undergraduate thesis focused on creating an Explainable AI framework for non-invasive blood glucose prediction, which has been accepted for publication. I possess a diverse technical skill set, including proficiency in engineering software, programming, and design tools. My leadership roles in various college clubs have honed my project management, team collaboration, and communication skills. I am eager to apply my knowledge and skills to a challenging role in the engineering field.
-                </p>
-            </div>
+            <div class="max-w-4xl mx-auto card p-8 rounded-xl"><p class="text-lg leading-relaxed">I am an Electrical and Electronics Engineer from Barisal Engineering College with a strong academic background and hands-on research experience. My undergraduate thesis focused on creating an Explainable AI framework for non-invasive blood glucose prediction, which has been accepted for publication. I possess a diverse technical skill set, including proficiency in engineering software, programming, and design tools. My leadership roles in various college clubs have honed my project management, team collaboration, and communication skills. I am eager to apply my knowledge and skills to a challenging role in the engineering field.</p></div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Technical Skills</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-center mb-4"><i data-lucide="cpu" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Engineering Software</h3></div>
-                    <div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">AutoCAD</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">LTspice</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Proteus</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Microwind</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Tanner EDA</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span></div>
-                </div>
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-center mb-4"><i data-lucide="code-2" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Programming & Simulation</h3></div>
-                    <div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">C++</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Java</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">MATLAB</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Visual Studio</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Anaconda</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Google Colab</span></div>
-                </div>
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-center mb-4"><i data-lucide="palette" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Design & Video</h3></div>
-                    <div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Photoshop</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Illustrator</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Canva</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Premiere Pro</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe After Effects</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Competencies Section -->
-        <section id="competencies" class="py-20 reveal">
-            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Core Competencies</h2>
-            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="clipboard-list" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Project Management</h3></div>
-                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="users-2" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Team Collaboration</h3></div>
-                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="message-circle" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Effective Communication</h3></div>
-                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="user-check" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Leadership</h3></div>
-            </div>
-            <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <div class="card p-6 rounded-xl flex items-center"><i data-lucide="globe" class="h-8 w-8 text-sky-400"></i><div class="ml-4"><h3 class="text-xl font-bold text-white">Bangla</h3><p class="text-gray-300">Native</p></div></div>
-                <div class="card p-6 rounded-xl flex items-center"><i data-lucide="globe" class="h-8 w-8 text-sky-400"></i><div class="ml-4"><h3 class="text-xl font-bold text-white">English</h3><p class="text-gray-300">Fluent (Professional)</p></div></div>
+                <div class="card p-6 rounded-xl"><div class="flex items-center mb-4"><i data-lucide="cpu" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Engineering Software</h3></div><div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">AutoCAD</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">LTspice</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Proteus</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Microwind</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Tanner EDA</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span></div></div>
+                <div class="card p-6 rounded-xl"><div class="flex items-center mb-4"><i data-lucide="code-2" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Programming & Simulation</h3></div><div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">C++</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Java</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">MATLAB</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Visual Studio</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Anaconda</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Google Colab</span></div></div>
+                <div class="card p-6 rounded-xl"><div class="flex items-center mb-4"><i data-lucide="palette" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Design & Video</h3></div><div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Photoshop</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Illustrator</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Canva</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Premiere Pro</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe After Effects</span></div></div>
             </div>
         </section>
 
         <!-- Experience & Publications Section -->
-        <section id="experience" class="py-20 bg-gray-900 reveal">
+        <section id="experience" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Research & Publications</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="card p-8 rounded-xl mb-8">
-                    <p class="text-sky-400 text-sm font-medium">September 2024 - August 2025</p>
-                    <h3 class="text-2xl font-semibold text-white mt-2">Undergraduate Thesis</h3>
-                    <p class="mt-2 text-lg font-bold">An Explainable AI Framework for Non-Invasive Blood Glucose Prediction and Hypoglycemia Detection.</p>
-                    <p class="mt-3 text-gray-300">Conducted research to develop an innovative AI model for blood glucose monitoring. The work focused on enhancing model interpretability using XAI techniques. Supervised by Md. Israil Hossain at Barisal Engineering College.</p>
-                </div>
-                 <div class="card p-8 rounded-xl">
-                    <p class="text-sky-400 text-sm font-medium">ICMCEL 2025 [Accepted]</p>
-                    <h3 class="text-2xl font-semibold text-white mt-2">Conference Publication</h3>
-                    <p class="mt-2 text-lg font-bold">"A Feature-Optimized Approach for Blood Glucose Forecasting Using Explainable AI (XAI)"</p>
-                    <p class="mt-3 text-gray-300">This paper, based on my thesis research, has been accepted for presentation at the International Conference on Multidisciplinary Computer Science, Electrical, Business & Literature.</p>
-                </div>
-            </div>
+            <div class="max-w-4xl mx-auto"><div class="card p-8 rounded-xl mb-8"><p class="text-sky-400 text-sm font-medium">September 2024 - August 2025</p><h3 class="text-2xl font-semibold text-white mt-2">Undergraduate Thesis</h3><p class="mt-2 text-lg font-bold">An Explainable AI Framework for Non-Invasive Blood Glucose Prediction and Hypoglycemia Detection.</p><p class="mt-3 text-gray-300">Conducted research to develop an innovative AI model for blood glucose monitoring. The work focused on enhancing model interpretability using XAI techniques. Supervised by Md. Israil Hossain at Barisal Engineering College.</p></div><div class="card p-8 rounded-xl"><p class="text-sky-400 text-sm font-medium">ICMCEL 2025 [Accepted]</p><h3 class="text-2xl font-semibold text-white mt-2">Conference Publication</h3><p class="mt-2 text-lg font-bold">"A Feature-Optimized Approach for Blood Glucose Forecasting Using Explainable AI (XAI)"</p><p class="mt-3 text-gray-300">This paper, based on my thesis research, has been accepted for presentation at the International Conference on Multidisciplinary Computer Science, Electrical, Business & Literature.</p></div></div>
         </section>
         
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gray-900 reveal">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Projects</h2>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6 rounded-xl"><h3 class="text-2xl font-semibold text-white">AI Blood Glucose Predictor</h3><p class="mt-3 text-gray-300">Developed the AI model from my thesis research, using Python and TensorFlow. The project includes data preprocessing scripts and a model that predicts blood glucose levels from non-invasive data.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span></div><div class="mt-6 flex space-x-4"><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a></div></div>
+                <div class="card p-6 rounded-xl"><h3 class="text-2xl font-semibold text-white">LabVIEW Automation System</h3><p class="mt-3 text-gray-300">Created a system in LabVIEW to automate sensor readings and data logging for a small-scale electronics project. The system visualizes real-time data and can trigger alerts based on set thresholds.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Data Acquisition</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span></div><div class="mt-6 flex space-x-4"><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="external-link" class="h-5 w-5 mr-2"></i>Live Demo</a></div></div>
+            </div>
+        </section>
+
         <!-- Professional Training Section -->
         <section id="training" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Professional Training</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="card p-8 rounded-xl">
-                    <p class="text-sky-400 text-sm font-medium">May 2025 (2 Weeks)</p>
-                    <h3 class="text-2xl font-semibold text-white mt-2">Industrial Technology in Electrical Engineering & Instrumentation</h3>
-                    <p class="mt-2 text-lg text-gray-300">Training Institute for Chemical Industries (TICI), Polash, Narsingdi.</p>
-                    <p class="mt-3 text-gray-300">Completed an intensive two-week program focused on practical industrial applications, covering advanced instrumentation and electrical systems in a chemical industry context.</p>
-                </div>
-            </div>
+            <div class="max-w-4xl mx-auto"><div class="card p-8 rounded-xl"><p class="text-sky-400 text-sm font-medium">May 2025 (2 Weeks)</p><h3 class="text-2xl font-semibold text-white mt-2">Industrial Technology in Electrical Engineering & Instrumentation</h3><p class="mt-2 text-lg text-gray-300">Training Institute for Chemical Industries (TICI), Polash, Narsingdi.</p><p class="mt-3 text-gray-300">Completed an intensive two-week program focused on practical industrial applications, covering advanced instrumentation and electrical systems in a chemical industry context.</p></div></div>
         </section>
 
         <!-- Leadership & Involvement Section -->
@@ -233,7 +205,7 @@
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Leadership & Involvement</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="edit-3" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Editor</h3><p class="text-gray-300 mt-1">Rotaract Club of Chittagong, Karnaphuli</p><p class="text-sky-400 text-sm mt-2">May 2024 - Present</p></div>
-                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="film" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">General Secretary</h3><p class="text-gray-300 mt-1">Barisal Engineering College Film & Photography Society</p<p class="text-sky-400 text-sm mt-2">July 2024 - August 2025</p></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="film" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">General Secretary</h3><p class="text-gray-300 mt-1">Barisal Engineering College Film & Photography Society</p><p class="text-sky-400 text-sm mt-2">July 2024 - August 2025</p></div>
                 <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="users" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Executive Member</h3><p class="text-gray-300 mt-1">Electronics, Sports, Research & Innovation, and Cultural Clubs at BEC</p><p class="text-sky-400 text-sm mt-2">2024 - 2025</p></div>
             </div>
         </section>
@@ -244,7 +216,7 @@
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2019 - 2025</p><h3 class="text-xl font-bold text-white mt-2">B.Sc. in Electrical and Electronic Engineering</h3><p class="text-gray-300 mt-1">Barisal Engineering College (BEC)</p><p class="mt-2 font-semibold">GPA: 3.23 / 4.00</p></div>
                 <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2017 - 2020</p><h3 class="text-xl font-bold text-white mt-2">Higher Secondary Certificate (HSC), Science</h3><p class="text-gray-300 mt-1">Chattogram Cantonment Public College (CCPC)</p><p class="mt-2 font-semibold">GPA: 4.92 / 5.00</p></div>
-                <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2012 - 2017</p><h3 class="text-xl font-bold text-white mt-2">Secondary School Certificate (SSC), Science</h3><p class="text-gray-300 mt-1">Begum Gul Chemonara School and College (BGCA)</p><p class="mt-2 font-semibold">Grade: 5.00</p></div>
+                <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2012 - 2017</p><h3 class="text-xl font-bold text-white mt-2">Secondary School Certificate (SSC), Science</h3><p class="text-gray-300 mt-1">Begum Gul Chemonara School and College (BGCA)</p><p class="mt-2 font-semibold">Grade: 5.00 / 5.00</p></div>
             </div>
         </section>
 
@@ -261,32 +233,24 @@
         <section id="references" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">References</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-white">Sabuj Ahmed</h3>
-                    <p class="text-gray-300 mt-1">Assistant Professor & Head, Dept. of EEE</p>
-                    <p class="text-gray-400 text-sm">Barisal Engineering College</p>
-                    <div class="mt-4"><a href="mailto:sabujahmed.duengg@bec.edu.bd" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="mail" class="h-4 w-4 mr-2"></i>Contact Email</a></div>
-                </div>
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-white">Md. Israil Hossain</h3>
-                    <p class="text-gray-300 mt-1">Lecturer, Dept. of EEE (Thesis Supervisor)</p>
-                    <p class="text-gray-400 text-sm">Barisal Engineering College</p>
-                     <div class="mt-4"><a href="mailto:israil.duengg@bec.edu.bd" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="mail" class="h-4 w-4 mr-2"></i>Contact Email</a></div>
-                </div>
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-white">Md. Liton Rabbani</h3>
-                    <p class="text-gray-300 mt-1">Principal (Add. Charge) & Associate Professor</p>
-                    <p class="text-gray-400 text-sm">Barisal Engineering College</p>
-                     <div class="mt-4"><a href="mailto:liton.duengg@bec.edu.bd" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="mail" class="h-4 w-4 mr-2"></i>Contact Email</a></div>
-                </div>
+                <div class="card p-6 rounded-xl"><h3 class="text-xl font-bold text-white">Sabuj Ahmed</h3><p class="text-gray-300 mt-1">Assistant Professor & Head, Dept. of EEE</p><p class="text-gray-400 text-sm">Barisal Engineering College</p><div class="mt-4"><a href="mailto:sabujahmed.duengg@bec.edu.bd" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="mail" class="h-4 w-4 mr-2"></i>Contact Email</a></div></div>
+                <div class="card p-6 rounded-xl"><h3 class="text-xl font-bold text-white">Md. Israil Hossain</h3><p class="text-gray-300 mt-1">Lecturer, Dept. of EEE (Thesis Supervisor)</p><p class="text-gray-400 text-sm">Barisal Engineering College</p><div class="mt-4"><a href="mailto:israil.duengg@bec.edu.bd" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="mail" class="h-4 w-4 mr-2"></i>Contact Email</a></div></div>
+                <div class="card p-6 rounded-xl"><h3 class="text-xl font-bold text-white">Md. Liton Rabbani</h3><p class="text-gray-300 mt-1">Principal (Add. Charge) & Associate Professor</p><p class="text-gray-400 text-sm">Barisal Engineering College</p><div class="mt-4"><a href="mailto:liton.duengg@bec.edu.bd" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="mail" class="h-4 w-4 mr-2"></i>Contact Email</a></div></div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="py-20 text-center bg-gray-900 reveal">
             <h2 class="text-4xl font-bold mb-4 section-heading">Get In Touch</h2>
-            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">I'm currently looking for new opportunities and would be happy to discuss how I can contribute to your team. Feel free to reach out!</p>
-            <a href="mailto:aditya.duengg@bec.edu.bd" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-xl">Contact Me</a>
+            <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Have a question or want to work together? Leave your details and I'll get back to you as soon as possible.</p>
+            <!-- To make this form work, create a free account at formspree.io -->
+            <!-- and replace "your_form_id" with your actual form ID -->
+            <form action="https://formspree.io/f/your_form_id" method="POST" class="max-w-xl mx-auto text-left">
+                <div class="mb-4"><label for="name" class="block text-gray-300 mb-2">Name</label><input type="text" id="name" name="name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-sky-500" required></div>
+                <div class="mb-4"><label for="email" class="block text-gray-300 mb-2">Email</label><input type="email" id="email" name="email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-sky-500" required></div>
+                <div class="mb-4"><label for="message" class="block text-gray-300 mb-2">Message</label><textarea id="message" name="message" rows="4" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-sky-500" required></textarea></div>
+                <div class="text-center"><button type="submit" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">Send Message</button></div>
+            </form>
             <div class="mt-12 flex justify-center space-x-6">
                 <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="linkedin" class="h-8 w-8"></i></a>
                 <a href="mailto:aditya.duengg@bec.edu.bd" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="mail" class="h-8 w-8"></i></a>
@@ -296,101 +260,48 @@
 
     </main>
     
-    <!-- Back to Top Button -->
-    <button id="to-top-button" title="Go To Top" class="hidden fixed bottom-8 right-8 z-50 p-3 bg-sky-500 text-white rounded-full shadow-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-opacity duration-300">
-        <i data-lucide="arrow-up" class="h-6 w-6"></i>
-    </button>
+    <button id="to-top-button" title="Go To Top" class="hidden fixed bottom-8 right-8 z-50 p-3 bg-sky-500 text-white rounded-full shadow-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-opacity duration-300"><i data-lucide="arrow-up" class="h-6 w-6"></i></button>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-800">
-        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
-            <p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <footer class="border-t border-gray-800"><div class="container mx-auto px-6 py-6 text-center text-gray-500"><p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p></div></footer>
 
     <script>
         lucide.createIcons();
 
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when a link is clicked
+        const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         const mobileLinks = mobileMenu.getElementsByTagName('a');
-        for (let link of mobileLinks) {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        }
+        for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
         
-        // Typing animation
-        const typedTextSpan = document.getElementById('typed-text');
-        const textArray = ["Electrical & Electronics Engineer", "AI Enthusiast", "Tech Innovator"];
-        const typingDelay = 100;
-        const erasingDelay = 50;
-        const newTextDelay = 2000;
-        let textArrayIndex = 0;
-        let charIndex = 0;
-
-        function type() {
-            if (charIndex < textArray[textArrayIndex].length) {
-                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, typingDelay);
-            } else {
-                setTimeout(erase, newTextDelay);
-            }
-        }
-
-        function erase() {
-            if (charIndex > 0) {
-                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(erase, erasingDelay);
-            } else {
-                textArrayIndex++;
-                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-                setTimeout(type, typingDelay + 1100);
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            if(textArray.length) setTimeout(type, newTextDelay + 250);
-        });
+        const typedTextSpan = document.getElementById('typed-text'), textArray = ["Electrical & Electronics Engineer", "AI Enthusiast", "Tech Innovator"];
+        let textArrayIndex = 0, charIndex = 0;
+        function type() { if (charIndex < textArray[textArrayIndex].length) { typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex++); setTimeout(type, 100); } else { setTimeout(erase, 2000); } }
+        function erase() { if (charIndex > 0) { typedTextSpan.textContent = textArray[textArrayIndex].substring(0, --charIndex); setTimeout(erase, 50); } else { textArrayIndex = ++textArrayIndex % textArray.length; setTimeout(type, 1200); } }
+        document.addEventListener("DOMContentLoaded", () => { if(textArray.length) setTimeout(type, 2250); });
         
-        // Reveal on scroll
         const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            for (let i = 0; i < revealElements.length; i++) {
-                const elementTop = revealElements[i].getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    revealElements[i].classList.add('visible');
-                }
-            }
-        };
-
+        const revealOnScroll = () => { for (let el of revealElements) { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('visible'); } } };
         window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll(); // Initial check
+        revealOnScroll();
 
-        // Back to Top Button
         const toTopButton = document.getElementById('to-top-button');
-        window.onscroll = function () {
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                toTopButton.classList.remove('hidden');
-            } else {
-                toTopButton.classList.add('hidden');
-            }
-        };
+        window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
+        toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-        toTopButton.onclick = function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', e => { cursor.setAttribute("style", `top: ${e.pageY}px; left: ${e.pageX}px;`); });
+        document.addEventListener('mousedown', () => cursor.classList.add('cursor-grow'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('cursor-grow'));
+        
+        const sections = document.querySelectorAll('section[id]'), navLinks = document.querySelectorAll('header nav a');
+        const activateMenuLink = () => {
+            let index = sections.length;
+            while(--index && window.scrollY + 80 < sections[index].offsetTop) {}
+            navLinks.forEach(link => link.classList.remove('nav-active'));
+            const activeLink = document.querySelector(`header nav a[href="#${sections[index].id}"]`);
+            if (activeLink) activeLink.classList.add('nav-active');
         };
-
+        window.addEventListener('scroll', activateMenuLink);
+        activateMenuLink();
     </script>
 </body>
 </html>
