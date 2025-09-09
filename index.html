@@ -12,7 +12,6 @@
             font-family: 'Inter', sans-serif;
             background-color: #111827; /* Dark background */
             color: #E5E7EB; /* Light text */
-            cursor: none; /* Hide default cursor */
         }
         .glass-effect {
             background: rgba(17, 24, 39, 0.8);
@@ -80,34 +79,9 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
-        /* Custom Cursor */
-        .cursor {
-            width: 25px;
-            height: 25px;
-            border: 2px solid #38BDF8;
-            border-radius: 50%;
-            position: absolute;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
-            z-index: 9999;
-        }
-        .cursor-grow {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(56, 189, 248, 0.2);
-            border-width: 1px;
-        }
-        /* Hide custom cursor on touch devices */
-        @media (hover: none) {
-            .cursor { display: none; }
-            body { cursor: auto; }
-        }
     </style>
 </head>
 <body class="antialiased">
-    <div class="cursor"></div>
 
     <!-- Header & Navigation -->
     <header class="sticky top-0 z-50 glass-effect">
@@ -189,7 +163,7 @@
         <section id="projects" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Projects</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card p-6 rounded-xl"><h3 class="text-2xl font-semibold text-white">AI Blood Glucose Predictor</h3><p class="mt-3 text-gray-300">Developed the AI model from my thesis research, using Python and TensorFlow. The project includes data preprocessing scripts and a model that predicts blood glucose levels from non-invasive data.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span></div><div class="mt-6 flex space-x-4"><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a></div></div>
+                <div class="card p-6 rounded-xl"><h3 class="text-2xl font-semibold text-white">AI Blood Glucose Predictor</h3><p class="mt-3 text-gray-300">Developed the AI model from my thesis research, using Python and TensorFlow. The project includes data preprocessing scripts and a model that predicts blood glucose levels from non-invasive data.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span></div><div class="mt-6 flex space-x-4"><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a><a href="https://huggingface.co/spaces/mlresearchhub/glycemic-predictor" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="external-link" class="h-5 w-5 mr-2"></i>Live Demo</a></div></div>
                 <div class="card p-6 rounded-xl"><h3 class="text-2xl font-semibold text-white">LabVIEW Automation System</h3><p class="mt-3 text-gray-300">Created a system in LabVIEW to automate sensor readings and data logging for a small-scale electronics project. The system visualizes real-time data and can trigger alerts based on set thresholds.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Data Acquisition</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span></div><div class="mt-6 flex space-x-4"><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a><a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="external-link" class="h-5 w-5 mr-2"></i>Live Demo</a></div></div>
             </div>
         </section>
@@ -286,11 +260,6 @@
         const toTopButton = document.getElementById('to-top-button');
         window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
         toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-
-        const cursor = document.querySelector('.cursor');
-        document.addEventListener('mousemove', e => { cursor.setAttribute("style", `top: ${e.pageY}px; left: ${e.pageX}px;`); });
-        document.addEventListener('mousedown', () => cursor.classList.add('cursor-grow'));
-        document.addEventListener('mouseup', () => cursor.classList.remove('cursor-grow'));
         
         const sections = document.querySelectorAll('section[id]'), navLinks = document.querySelectorAll('header nav a');
         const activateMenuLink = () => {
