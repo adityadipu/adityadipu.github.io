@@ -14,22 +14,37 @@
             color: #E5E7EB; /* Light text */
         }
         .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         .section-heading {
             color: #F9FAFB;
         }
         .link-hover {
+            position: relative;
             transition: color 0.3s ease;
+        }
+        .link-hover:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #38BDF8;
+            transition: all 0.3s ease-out;
         }
         .link-hover:hover {
             color: #38BDF8; /* Light blue on hover */
         }
+        .link-hover:hover:after {
+            width: 100%;
+            left: 0;
+        }
         .tag {
-            background-color: #38BDF8;
-            color: #111827;
+            background-color: #374151;
+            color: #E5E7EB;
         }
         .card {
             background-color: #1F2937;
@@ -37,16 +52,47 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
             box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.1), 0 4px 6px -2px rgba(56, 189, 248, 0.05);
+        }
+        /* Typing animation */
+        .typed-cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Animated Gradient */
+        .animated-gradient {
+            background: linear-gradient(300deg, #111827, #1e3a8a, #111827);
+            background-size: 180% 180%;
+            animation: gradient-animation 18s ease infinite;
+        }
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center glass-effect">
+    <header class="sticky top-0 z-50 glass-effect">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-white">
                 <a href="#">Aditya Das Gupta</a>
             </div>
@@ -61,23 +107,41 @@
                 <a href="#references" class="link-hover">References</a>
                 <a href="#contact" class="link-hover">Contact</a>
             </div>
+            <!-- Mobile Menu Button -->
             <div class="md:hidden">
-                 <!-- Mobile menu can be added here if needed -->
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
             </div>
         </nav>
+         <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-700">About</a>
+            <a href="#skills" class="block py-2 px-6 text-sm hover:bg-gray-700">Skills</a>
+            <a href="#competencies" class="block py-2 px-6 text-sm hover:bg-gray-700">Competencies</a>
+            <a href="#experience" class="block py-2 px-6 text-sm hover:bg-gray-700">Experience</a>
+            <a href="#training" class="block py-2 px-6 text-sm hover:bg-gray-700">Training</a>
+            <a href="#leadership" class="block py-2 px-6 text-sm hover:bg-gray-700">Leadership</a>
+            <a href="#education" class="block py-2 px-6 text-sm hover:bg-gray-700">Education</a>
+            <a href="#references" class="block py-2 px-6 text-sm hover:bg-gray-700">References</a>
+            <a href="#contact" class="block py-2 px-6 text-sm hover:bg-gray-700">Contact</a>
+        </div>
     </header>
 
     <main class="container mx-auto px-6">
 
         <!-- Hero Section -->
-        <section id="home" class="flex flex-col md:flex-row items-center my-12 md:my-24">
-            <div class="md:w-1/2 text-center md:text-left">
+        <section id="home" class="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-68px)] animated-gradient">
+            <div class="md:w-1/2 text-center">
+                 <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center mb-8 mx-auto">
+                    <img src="profile.jpg" alt="A professional photo of Aditya Das Gupta" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-sky-400 shadow-2xl">
+                </div>
                 <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">Aditya Das Gupta</h1>
-                <p class="text-2xl mt-2 text-sky-300">Electrical & Electronics Engineer</p>
-                <p class="mt-4 text-lg text-gray-300 max-w-xl">
+                <p class="text-2xl mt-2 text-sky-300"><span id="typed-text"></span></p>
+                <p class="mt-4 text-lg text-gray-300 max-w-xl mx-auto">
                     A recent graduate with a passion for leveraging technology to solve real-world problems, specializing in Explainable AI and its applications in medical technology.
                 </p>
-                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                <div class="mt-8 flex justify-center space-x-4">
                     <a href="mailto:aditya.duengg@bec.edu.bd" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
                         <i data-lucide="mail" class="mr-2 h-5 w-5"></i> Email Me
                     </a>
@@ -86,13 +150,10 @@
                     </a>
                 </div>
             </div>
-            <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
-                <img src="profile.jpg" alt="A professional photo of Aditya Das Gupta" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-sky-400">
-            </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20">
+        <section id="about" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">About Me</h2>
             <div class="max-w-4xl mx-auto card p-8 rounded-xl">
                 <p class="text-lg leading-relaxed">
@@ -102,7 +163,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-20 bg-gray-900">
+        <section id="skills" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Technical Skills</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl">
@@ -121,7 +182,7 @@
         </section>
 
         <!-- Core Competencies Section -->
-        <section id="competencies" class="py-20">
+        <section id="competencies" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Core Competencies</h2>
             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="clipboard-list" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Project Management</h3></div>
@@ -136,7 +197,7 @@
         </section>
 
         <!-- Experience & Publications Section -->
-        <section id="experience" class="py-20 bg-gray-900">
+        <section id="experience" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Research & Publications</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="card p-8 rounded-xl mb-8">
@@ -155,7 +216,7 @@
         </section>
         
         <!-- Professional Training Section -->
-        <section id="training" class="py-20">
+        <section id="training" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Professional Training</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="card p-8 rounded-xl">
@@ -168,27 +229,27 @@
         </section>
 
         <!-- Leadership & Involvement Section -->
-        <section id="leadership" class="py-20 bg-gray-900">
+        <section id="leadership" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Leadership & Involvement</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="edit-3" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Editor</h3><p class="text-gray-300 mt-1">Rotaract Club of Chittagong, Karnaphuli</p><p class="text-sky-400 text-sm mt-2">May 2024 - Present</p></div>
-                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="film" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">General Secretary</h3><p class="text-gray-300 mt-1">Barisal Engineering College Film & Photography Society</p><p class="text-sky-400 text-sm mt-2">July 2024 - August 2025</p></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="film" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">General Secretary</h3><p class="text-gray-300 mt-1">Barisal Engineering College Film & Photography Society</p<p class="text-sky-400 text-sm mt-2">July 2024 - August 2025</p></div>
                 <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="users" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Executive Member</h3><p class="text-gray-300 mt-1">Electronics, Sports, Research & Innovation, and Cultural Clubs at BEC</p><p class="text-sky-400 text-sm mt-2">2024 - 2025</p></div>
             </div>
         </section>
         
         <!-- Education Section -->
-        <section id="education" class="py-20">
+        <section id="education" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Education</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2019 - 2025</p><h3 class="text-xl font-bold text-white mt-2">B.Sc. in Electrical and Electronic Engineering</h3><p class="text-gray-300 mt-1">Barisal Engineering College (BEC)</p><p class="mt-2 font-semibold">GPA: 3.23 / 4.00</p></div>
                 <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2017 - 2020</p><h3 class="text-xl font-bold text-white mt-2">Higher Secondary Certificate (HSC), Science</h3><p class="text-gray-300 mt-1">Chattogram Cantonment Public College (CCPC)</p><p class="mt-2 font-semibold">GPA: 4.92 / 5.00</p></div>
-                <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2012 - 2017</p><h3 class="text-xl font-bold text-white mt-2">Secondary School Certificate (SSC), Science</h3><p class="text-gray-300 mt-1">Begum Gul Chemonara School and College (BGCA)</p><p class="mt-2 font-semibold">Grade: 5.00 / 5.00</p></div>
+                <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2012 - 2017</p><h3 class="text-xl font-bold text-white mt-2">Secondary School Certificate (SSC), Science</h3><p class="text-gray-300 mt-1">Begum Gul Chemonara School and College (BGCA)</p><p class="mt-2 font-semibold">Grade: 5.00</p></div>
             </div>
         </section>
 
         <!-- Honors and Awards Section -->
-        <section id="awards" class="py-20 bg-gray-900">
+        <section id="awards" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Honors & Awards</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="card p-6 rounded-xl"><div class="flex items-center mb-3"><i data-lucide="award" class="h-8 w-8 text-sky-400"></i><h3 class="text-xl font-bold text-white ml-3">Compensatory Scholarship</h3></div><p class="text-gray-300">Awarded by Barisal Engineering College (BEC) for outstanding academic performance.</p></div>
@@ -197,7 +258,7 @@
         </section>
 
         <!-- References Section -->
-        <section id="references" class="py-20">
+        <section id="references" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">References</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl">
@@ -222,7 +283,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 text-center bg-gray-900">
+        <section id="contact" class="py-20 text-center bg-gray-900 reveal">
             <h2 class="text-4xl font-bold mb-4 section-heading">Get In Touch</h2>
             <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">I'm currently looking for new opportunities and would be happy to discuss how I can contribute to your team. Feel free to reach out!</p>
             <a href="mailto:aditya.duengg@bec.edu.bd" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-xl">Contact Me</a>
@@ -240,7 +301,6 @@
         <i data-lucide="arrow-up" class="h-6 w-6"></i>
     </button>
 
-
     <!-- Footer -->
     <footer class="border-t border-gray-800">
         <div class="container mx-auto px-6 py-6 text-center text-gray-500">
@@ -251,8 +311,74 @@
     <script>
         lucide.createIcons();
 
-        const toTopButton = document.getElementById('to-top-button');
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        }
+        
+        // Typing animation
+        const typedTextSpan = document.getElementById('typed-text');
+        const textArray = ["Electrical & Electronics Engineer", "AI Enthusiast", "Tech Innovator"];
+        const typingDelay = 100;
+        const erasingDelay = 50;
+        const newTextDelay = 2000;
+        let textArrayIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < textArray[textArrayIndex].length) {
+                typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, erasingDelay);
+            } else {
+                textArrayIndex++;
+                if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                setTimeout(type, typingDelay + 1100);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if(textArray.length) setTimeout(type, newTextDelay + 250);
+        });
+        
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            for (let i = 0; i < revealElements.length; i++) {
+                const elementTop = revealElements[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    revealElements[i].classList.add('visible');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // Back to Top Button
+        const toTopButton = document.getElementById('to-top-button');
         window.onscroll = function () {
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 toTopButton.classList.remove('hidden');
@@ -264,6 +390,7 @@
         toTopButton.onclick = function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
+
     </script>
 </body>
 </html>
