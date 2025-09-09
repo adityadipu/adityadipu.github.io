@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF--8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya Das Gupta - Electrical & Electronics Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -50,12 +50,13 @@
             <div class="text-2xl font-bold text-white">
                 <a href="#">Aditya Das Gupta</a>
             </div>
-            <div class="hidden md:flex space-x-6 text-lg">
+            <div class="hidden md:flex space-x-4 text-md">
                 <a href="#about" class="link-hover">About</a>
                 <a href="#skills" class="link-hover">Skills</a>
+                <a href="#competencies" class="link-hover">Competencies</a>
                 <a href="#experience" class="link-hover">Experience</a>
+                <a href="#training" class="link-hover">Training</a>
                 <a href="#leadership" class="link-hover">Leadership</a>
-                <a href="#awards" class="link-hover">Awards</a>
                 <a href="#education" class="link-hover">Education</a>
                 <a href="#contact" class="link-hover">Contact</a>
             </div>
@@ -65,7 +66,7 @@
         </nav>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6">
 
         <!-- Hero Section -->
         <section id="home" class="flex flex-col md:flex-row items-center my-12 md:my-24">
@@ -85,7 +86,6 @@
                 </div>
             </div>
             <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
-                 <!-- Your professional photo -->
                 <img src="profile.jpg" alt="A professional photo of Aditya Das Gupta" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-sky-400">
             </div>
         </section>
@@ -101,10 +101,9 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-20">
+        <section id="skills" class="py-20 bg-gray-900">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Technical Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Engineering Software -->
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="card p-6 rounded-xl">
                     <div class="flex items-center mb-4">
                         <i data-lucide="cpu" class="h-8 w-8 text-sky-400"></i>
@@ -120,7 +119,6 @@
                         <span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span>
                     </div>
                 </div>
-                <!-- Programming & Simulation -->
                 <div class="card p-6 rounded-xl">
                     <div class="flex items-center mb-4">
                         <i data-lucide="code-2" class="h-8 w-8 text-sky-400"></i>
@@ -136,7 +134,6 @@
                         <span class="tag text-sm font-medium px-3 py-1 rounded-full">Google Colab</span>
                     </div>
                 </div>
-                <!-- Design & Video -->
                 <div class="card p-6 rounded-xl">
                     <div class="flex items-center mb-4">
                         <i data-lucide="palette" class="h-8 w-8 text-sky-400"></i>
@@ -153,8 +150,23 @@
             </div>
         </section>
 
+        <!-- Core Competencies Section -->
+        <section id="competencies" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Core Competencies</h2>
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="clipboard-list" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Project Management</h3></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="users-2" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Team Collaboration</h3></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="message-circle" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Effective Communication</h3></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="user-check" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Leadership</h3></div>
+            </div>
+            <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                <div class="card p-6 rounded-xl flex items-center"><i data-lucide="globe" class="h-8 w-8 text-sky-400"></i><div class="ml-4"><h3 class="text-xl font-bold text-white">Bangla</h3><p class="text-gray-300">Native</p></div></div>
+                <div class="card p-6 rounded-xl flex items-center"><i data-lucide="globe" class="h-8 w-8 text-sky-400"></i><div class="ml-4"><h3 class="text-xl font-bold text-white">English</h3><p class="text-gray-300">Fluent (Professional)</p></div></div>
+            </div>
+        </section>
+
         <!-- Experience & Publications Section -->
-        <section id="experience" class="py-20">
+        <section id="experience" class="py-20 bg-gray-900">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Research & Publications</h2>
             <div class="max-w-4xl mx-auto">
                 <div class="card p-8 rounded-xl mb-8">
@@ -172,56 +184,35 @@
             </div>
         </section>
         
-        <!-- Education Section -->
-        <section id="education" class="py-20">
-            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Education</h2>
-            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card p-6 rounded-xl">
-                    <p class="text-sky-400 text-sm">2019 - 2025</p>
-                    <h3 class="text-xl font-bold text-white mt-2">B.Sc. in Electrical and Electronic Engineering</h3>
-                    <p class="text-gray-300 mt-1">Barisal Engineering College (BEC)</p>
-                    <p class="mt-2 font-semibold">GPA: 3.23 / 4.00</p>
-                </div>
-                <div class="card p-6 rounded-xl">
-                    <p class="text-sky-400 text-sm">2017 - 2020</p>
-                    <h3 class="text-xl font-bold text-white mt-2">Higher Secondary Certificate (HSC), Science</h3>
-                    <p class="text-gray-300 mt-1">Chattogram Cantonment Public College (CCPC)</p>
-                    <p class="mt-2 font-semibold">GPA: 4.92 / 5.00</p>
+        <!-- Professional Training Section -->
+        <section id="training" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Professional Training</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="card p-8 rounded-xl">
+                    <p class="text-sky-400 text-sm font-medium">May 2025 (2 Weeks)</p>
+                    <h3 class="text-2xl font-semibold text-white mt-2">Industrial Technology in Electrical Engineering & Instrumentation</h3>
+                    <p class="mt-2 text-lg text-gray-300">Training Institute for Chemical Industries (TICI), Polash, Narsingdi.</p>
+                    <p class="mt-3 text-gray-300">Completed an intensive two-week program focused on practical industrial applications, covering advanced instrumentation and electrical systems in a chemical industry context.</p>
                 </div>
             </div>
         </section>
 
         <!-- Leadership & Involvement Section -->
-        <section id="leadership" class="py-20">
+        <section id="leadership" class="py-20 bg-gray-900">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Leadership & Involvement</h2>
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Editor, Rotaract Club -->
-                <div class="card p-6 rounded-xl text-center">
-                    <div class="flex justify-center mb-4">
-                        <i data-lucide="edit-3" class="h-10 w-10 text-sky-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Editor</h3>
-                    <p class="text-gray-300 mt-1">Rotaract Club of Chittagong, Karnaphuli</p>
-                    <p class="text-sky-400 text-sm mt-2">May 2024 - Present</p>
-                </div>
-                <!-- General Secretary, Film & Photography -->
-                <div class="card p-6 rounded-xl text-center">
-                    <div class="flex justify-center mb-4">
-                        <i data-lucide="film" class="h-10 w-10 text-sky-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">General Secretary</h3>
-                    <p class="text-gray-300 mt-1">Barisal Engineering College Film & Photography Society</p>
-                    <p class="text-sky-400 text-sm mt-2">July 2024 - August 2025</p>
-                </div>
-                <!-- Executive Member, Multiple Clubs -->
-                <div class="card p-6 rounded-xl text-center">
-                     <div class="flex justify-center mb-4">
-                        <i data-lucide="users" class="h-10 w-10 text-sky-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Executive Member</h3>
-                    <p class="text-gray-300 mt-1">Electronics, Sports, Research & Innovation, and Cultural Clubs at BEC</p>
-                    <p class="text-sky-400 text-sm mt-2">2024 - 2025</p>
-                </div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="edit-3" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Editor</h3><p class="text-gray-300 mt-1">Rotaract Club of Chittagong, Karnaphuli</p><p class="text-sky-400 text-sm mt-2">May 2024 - Present</p></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="film" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">General Secretary</h3><p class="text-gray-300 mt-1">Barisal Engineering College Film & Photography Society</p><p class="text-sky-400 text-sm mt-2">July 2024 - August 2025</p></div>
+                <div class="card p-6 rounded-xl text-center"><div class="flex justify-center mb-4"><i data-lucide="users" class="h-10 w-10 text-sky-400"></i></div><h3 class="text-xl font-bold text-white">Executive Member</h3><p class="text-gray-300 mt-1">Electronics, Sports, Research & Innovation, and Cultural Clubs at BEC</p><p class="text-sky-400 text-sm mt-2">2024 - 2025</p></div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="py-20">
+            <h2 class="text-4xl font-bold text-center mb-12 section-heading">Education</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2019 - 2025</p><h3 class="text-xl font-bold text-white mt-2">B.Sc. in Electrical and Electronic Engineering</h3><p class="text-gray-300 mt-1">Barisal Engineering College (BEC)</p><p class="mt-2 font-semibold">GPA: 3.23 / 4.00</p></div>
+                <div class="card p-6 rounded-xl"><p class="text-sky-400 text-sm">2017 - 2020</p><h3 class="text-xl font-bold text-white mt-2">Higher Secondary Certificate (HSC), Science</h3><p class="text-gray-300 mt-1">Chattogram Cantonment Public College (CCPC)</p><p class="mt-2 font-semibold">GPA: 4.92 / 5.00</p></div>
             </div>
         </section>
 
@@ -229,22 +220,8 @@
         <section id="awards" class="py-20 bg-gray-900">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Honors & Awards</h2>
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Compensatory Scholarship -->
-                <div class="card p-6 rounded-xl">
-                     <div class="flex items-center mb-3">
-                        <i data-lucide="award" class="h-8 w-8 text-sky-400"></i>
-                        <h3 class="text-xl font-bold text-white ml-3">Compensatory Scholarship</h3>
-                    </div>
-                    <p class="text-gray-300">Awarded by Barisal Engineering College (BEC) for outstanding academic performance.</p>
-                </div>
-                <!-- Honorary Award -->
-                <div class="card p-6 rounded-xl">
-                     <div class="flex items-center mb-3">
-                        <i data-lucide="star" class="h-8 w-8 text-sky-400"></i>
-                        <h3 class="text-xl font-bold text-white ml-3">Honorary Award</h3>
-                    </div>
-                    <p class="text-gray-300">Received from Cambridge School and College in recognition of outstanding SSC examination results.</p>
-                </div>
+                <div class="card p-6 rounded-xl"><div class="flex items-center mb-3"><i data-lucide="award" class="h-8 w-8 text-sky-400"></i><h3 class="text-xl font-bold text-white ml-3">Compensatory Scholarship</h3></div><p class="text-gray-300">Awarded by Barisal Engineering College (BEC) for outstanding academic performance.</p></div>
+                <div class="card p-6 rounded-xl"><div class="flex items-center mb-3"><i data-lucide="star" class="h-8 w-8 text-sky-400"></i><h3 class="text-xl font-bold text-white ml-3">Honorary Award</h3></div><p class="text-gray-300">Received from Cambridge School and College in recognition of outstanding SSC examination results.</p></div>
             </div>
         </section>
 
@@ -252,19 +229,11 @@
         <section id="contact" class="py-20 text-center">
             <h2 class="text-4xl font-bold mb-4 section-heading">Get In Touch</h2>
             <p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">I'm currently looking for new opportunities and would be happy to discuss how I can contribute to your team. Feel free to reach out!</p>
-            <a href="mailto:aditya.duengg@bec.edu.bd" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-xl">
-                Contact Me
-            </a>
+            <a href="mailto:aditya.duengg@bec.edu.bd" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg transition duration-300 text-xl">Contact Me</a>
             <div class="mt-12 flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="text-gray-400 hover:text-sky-400 transition">
-                    <i data-lucide="linkedin" class="h-8 w-8"></i>
-                </a>
-                <a href="mailto:aditya.duengg@bec.edu.bd" class="text-gray-400 hover:text-sky-400 transition">
-                    <i data-lucide="mail" class="h-8 w-8"></i>
-                </a>
-                <a href="tel:+8801880301030" class="text-gray-400 hover:text-sky-400 transition">
-                    <i data-lucide="phone" class="h-8 w-8"></i>
-                </a>
+                <a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="linkedin" class="h-8 w-8"></i></a>
+                <a href="mailto:aditya.duengg@bec.edu.bd" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="mail" class="h-8 w-8"></i></a>
+                <a href="tel:+8801880301030" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="phone" class="h-8 w-8"></i></a>
             </div>
         </section>
 
