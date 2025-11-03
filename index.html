@@ -35,6 +35,7 @@
         .modal-container { transition: transform 0.3s ease, opacity 0.3s ease; }
         .modal-content img { border-radius: 0.5rem; margin-top: 1rem; margin-bottom: 1rem; }
         .modal-content h3 { font-size: 1.5rem; font-weight: 700; color: #F9FAFB; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .modal-content figcaption { text-align: center; font-style: italic; color: #9CA3AF; font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1rem; }
     </style>
 </head>
 <body class="antialiased">
@@ -98,12 +99,12 @@
         <section id="projects" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Projects</h2>
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
+                <!-- Project 1: AI Glucose -->
                 <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">AI Blood Glucose Predictor</h3><p class="mt-3 text-gray-300 flex-grow">Developed the AI model from my thesis research, using Python and TensorFlow. The project includes data preprocessing scripts and a model that predicts blood glucose levels from non-invasive data.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span></div><div class="mt-6 flex space-x-4"><button data-project-id="ai-glucose" class="project-modal-trigger inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></button></div></div>
-                <!-- Project 2 -->
-                <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">LabVIEW Automation System</h3><p class="mt-3 text-gray-300 flex-grow">Created a system in LabVIEW to automate sensor readings and data logging for a small-scale electronics project. The system visualizes real-time data and can trigger alerts based on set thresholds.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Data Acquisition</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span></div><div class="mt-6 flex space-x-4"><button data-project-id="labview" class="project-modal-trigger inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></button></div></div>
-                <!-- Project 3 -->
-                <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">Smart Cactus Pot with IoT & ML</h3><p class="mt-3 text-gray-300 flex-grow">A self-sustaining, solar-powered smart pot that monitors cactus health via Blynk and uses an Isolation Forest model to detect anomalies like critically dry soil.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Machine Learning</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">ESP8266</span></div><div class="mt-6 flex space-x-4"><button data-project-id="cactus-pot" class="project-modal-trigger inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></button></div></div>
+                <!-- Project 2: Smart Cactus Pot -->
+                <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">Smart Cactus Pot with IoT & ML</h3><p class="mt-3 text-gray-300 flex-grow">A self-sustaining, solar-powered smart pot that monitors cactus health via Blynk and uses an Isolation Forest model to detect anomalies like critically dry soil.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Machine Learning</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">ESP8266</span></div><div class="mt-6 flex space-x-4"><button data-project-id="cactus-pot" class="project-modal-trigger inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></button></div></div>
+                <!-- Project 3: Smart Tank -->
+                <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">Smart Tank: Water Management</h3><p class="mt-3 text-gray-300 flex-grow">An automated IoT system for managing water levels across multiple tanks using an ESP8266, sensors, and a custom Android app with MQTT and Firebase for real-time control.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Android</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">MQTT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Firebase</span></div><div class="mt-6 flex space-x-4"><button data-project-id="smart-tank" class="project-modal-trigger inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></button></div></div>
             </div>
         </section>
 
@@ -279,33 +280,13 @@
                     </div>
                 `
             },
-            'labview': {
-                title: 'LabVIEW Automation System',
-                content: `
-                    <h3>Overview</h3>
-                    <p>This project involved creating a graphical user interface (GUI) in LabVIEW to automate sensor readings and data logging for an electronics workbench. The system visualizes real-time data from an Arduino and can trigger alerts based on user-defined thresholds, such as over-voltage or temperature limits.</p>
-                     <h3>Key Features</h3>
-                    <ul class="list-disc list-inside my-4 space-y-2">
-                        <li>Real-time data visualization of multiple sensors.</li>
-                        <li>User-configurable alert thresholds.</li>
-                        <li>Automated data logging to a CSV file for later analysis.</li>
-                        <li>Serial communication between LabVIEW and Arduino microcontroller.</li>
-                    </ul>
-                     <div class="flex flex-wrap gap-2 my-4">
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span>
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Data Acquisition</span>
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span>
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Serial Communication</span>
-                    </div>
-                    <div class="mt-6 flex space-x-4">
-                        <a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a>
-                    </div>
-                `
-            },
             'cactus-pot': {
                 title: 'Smart Cactus Pot with IoT Monitoring and ML Anomaly Detection',
                 content: `
-                    <img src="project_images/project_hardware.jpg" alt="Project Hardware" class="w-full h-auto object-cover">
+                    <figure>
+                        <img src="project_images/project_hardware.jpg" alt="Project Hardware" class="w-full h-auto object-cover">
+                        <figcaption>The complete solar-powered hardware setup.</figcaption>
+                    </figure>
                     <h3>Overview</h3>
                     <p>This project is a self-sustaining, solar-powered smart plant pot designed to monitor the health of a cactus. It uses an ESP8266 to collect real-time sensor data, which is visualized on a Blynk mobile app. Furthermore, the collected data is analyzed using machine learning (an Isolation Forest model) to automatically detect anomalous conditions, such as critically dry soil.</p>
                     
@@ -343,11 +324,17 @@
 
                     <h3>Mobile App Interface</h3>
                     <p>The Blynk mobile app provides a clean, intuitive dashboard to monitor all sensor data in real-time:</p>
-                    <img src="project_images/blynk_dashboard.png.jpg" alt="Blynk Mobile App">
+                    <figure>
+                        <img src="project_images/blynk_dashboard.png.jpg" alt="Blynk Mobile App">
+                        <figcaption>Live data dashboard on the Blynk mobile app.</figcaption>
+                    </figure>
 
                     <h3>Machine Learning Analysis: Anomaly Detection</h3>
                     <p>Instead of using simple if/else rules, this project leverages an Isolation Forest algorithm to learn the "normal" operating conditions from the sensor data. The model then identifies data points that deviate significantly from this norm. The plot below shows the soil moisture over time, with the red 'X's marking the anomalies detected by the model—these represent the most critical moments when the plant likely needed water.</p>
-                    <img src="project_images/anomaly_detection.png" alt="Anomaly Detection Plot">
+                    <figure>
+                        <img src="project_images/anomaly_detection.png" alt="Anomaly Detection Plot">
+                        <figcaption>Isolation Forest identifying critical low-moisture events.</figcaption>
+                    </figure>
                     
                     <h3>Future Plans</h3>
                     <p>My goal is to evolve this prototype into a fully smart, self-powered cactus pot integrating a dedicated mobile app. The next phase will involve using the ML anomaly alerts to automatically trigger a water pump and developing a custom mobile application for a more tailored user experience.</p>
@@ -355,6 +342,70 @@
                     <div class="mt-6">
                         <a href="https://lnkd.in/eeQRY7bA" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View on GitHub</a>
                     </div>
+                `
+            },
+            'smart-tank': {
+                title: 'Smart Tank: Automated Water Management System',
+                content: `
+                    <h3>Introduction</h3>
+                    <p>Tired of manual water level checks and wasted water? Our Smart Tank system offers an automated, intelligent solution for efficient water management across multiple tanks. It ensures optimal water levels, prevents overflow, and provides real-time control, all from your smartphone.</p>
+                    
+                    <figure>
+                        <img src="project_images/Final 3.jpg" alt="Hardware Setup: Automated Water Management" class="w-full h-auto object-cover">
+                        <figcaption>Hardware Setup: Automated Water Management</figcaption>
+                    </figure>
+
+                    <h3>How It Works</h3>
+                    <p>The system utilizes three interconnected tanks: a Supply Reservoir (source), a Smart Tank (main monitored tank with sensors), and a Distribution Tank (for usage). An ESP8266 microcontroller continuously monitors the Smart Tank's level using an ultrasonic sensor. This data is wirelessly transmitted to a custom Android application.</p>
+                    <p class="mt-2">Based on user-defined thresholds, the system automatically activates a submersible pump in the Supply Reservoir to fill the Smart Tank, maintaining precise water levels without manual intervention.</p>
+                    
+                    <figure>
+                        <img src="project_images/Schemetic Diagram-01.jpg" alt="System Architecture Overview" class="w-full h-auto object-cover">
+                        <figcaption>System Architecture Overview</figcaption>
+                    </figure>
+
+                    <h3>Key Features</h3>
+                    <ul class="list-disc list-inside my-4 space-y-2">
+                        <li><b>Real-time Monitoring:</b> View current water levels (percentage and depth) instantly via the Android app.</li>
+                        <li><b>Automated Pump Control:</b> Set desired fill levels; the pump manages itself.</li>
+                        <li><b>Manual Override:</b> Full manual control (ON/OFF) of the pump from the app.</li>
+                        <li><b>Critical Level Alerts:</b> Receive instant push notifications for low or full tank conditions.</li>
+                        <li><b>Intuitive Mobile App:</b> User-friendly interface for seamless control and data visualization.</li>
+                    </ul>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <figure>
+                            <img src="project_images/Homepage.jpg" alt="Android App Interface - Homepage" class="w-full h-auto object-cover">
+                            <figcaption>Android App Homepage</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="project_images/Final 2.jpg" alt="Real-time Monitoring on App" class="w-full h-auto object-cover">
+                            <figcaption>Real-time Monitoring</figcaption>
+                        </figure>
+                    </div>
+
+                    <h3>Technology Stack</h3>
+                    <div class="flex flex-col md:flex-row gap-8 mt-4">
+                        <div class="flex-1">
+                            <b>Hardware:</b>
+                            <ul class="list-disc list-inside mt-2">
+                                <li>ESP8266 Microcontroller</li>
+                                <li>Ultrasonic Sensor (HC-SR04)</li>
+                                <li>Submersible Pump</li>
+                            </ul>
+                        </div>
+                        <div class="flex-1">
+                            <b>Software & Cloud:</b>
+                            <ul class="list-disc list-inside mt-2">
+                                <li>Android (Kotlin)</li>
+                                <li>MQTT Protocol (hivemq.com)</li>
+                                <li>Firebase Cloud Messaging (FCM)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3>Conclusion / Future Scope</h3>
+                    <p class="mt-4">This prototype demonstrates a robust solution for home, industrial, or agricultural water management, reducing manual effort and preventing resource waste. Future enhancements could include historical data analytics, multi-tank synchronization, and integration with smart home platforms.</p>
                 `
             }
         };
@@ -371,7 +422,7 @@
             
             modalBody.innerHTML = `
                 <h2 class="text-3xl font-bold text-white mb-4">${project.title}</h2>
-                <div class="text-gray-300 leading-relaxed">${project.content}</div>
+                <div class="text-gray-300 leading-relaxed modal-content">${project.content}</div>
             `;
             lucide.createIcons();
             modal.classList.remove('hidden');
@@ -380,6 +431,8 @@
                 modal.querySelector('.modal-overlay').classList.remove('opacity-0');
                 modalContainer.classList.remove('opacity-0', 'scale-95');
             }, 10);
+            // Scroll modal to top
+            modalBody.scrollTop = 0;
         };
 
         const closeModal = () => {
