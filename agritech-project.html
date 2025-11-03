@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTech SMS Thermostat - Aditya Das Gupta</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>AD</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
+        .glass-effect { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .link-hover { position: relative; transition: color 0.3s ease; padding-bottom: 6px; }
+        .link-hover:after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: #38BDF8; transition: all 0.3s ease-out; }
+        .link-hover:hover { color: #38BDF8; }
+        .link-hover:hover:after { width: 100%; }
+        .tag { background-color: #374151; color: #E5E7EB; display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; margin: 0.25rem; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Project Page Specific Styles */
+        .project-hero {
+            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 1)), url('project_images/2.jpg') no-repeat center center;
+            background-size: cover;
+            border-bottom: 1px solid #374151;
+        }
+        .project-content img { border-radius: 0.5rem; margin-top: 1rem; margin-bottom: 1rem; border: 1px solid #374151; }
+        .project-content h2 { font-size: 2.25rem; font-weight: 700; color: #F9FAFB; margin-top: 3rem; margin-bottom: 1rem; border-bottom: 1px solid #374151; padding-bottom: 0.5rem;}
+        .project-content h3 { font-size: 1.75rem; font-weight: 700; color: #F9FAFB; margin-top: 2rem; margin-bottom: 0.5rem; }
+        .project-content figcaption { text-align: center; font-style: italic; color: #9CA3AF; font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1rem; }
+        .project-content ul { list-style: disc; list-style-position: inside; margin-left: 0.5rem; margin-bottom: 1rem; }
+        .project-content p { margin-bottom: 1rem; line-height: 1.75; }
+        .project-content b { color: #F9FAFB; font-weight: 600; }
+        .phone-mockup-sms {
+            width: 300px;
+            margin: 2rem auto;
+            background: #1F2937;
+            border: 8px solid #374151;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .phone-mockup-sms img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 16px;
+            margin: 0;
+            border: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 glass-effect">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white"><a href="index.html">Aditya Das Gupta</a></div>
+            <div class="hidden md:flex items-center space-x-1 text-sm lg:space-x-2 lg:text-base">
+                <a href="index.html#about" class="link-hover">About</a>
+                <a href="index.html#skills" class="link-hover">Skills</a>
+                <a href="index.html#experience" class="link-hover">Experience</a>
+                <a href="index.html#projects" class="link-hover">Projects</a>
+                <a href="index.html#articles" class="link-hover">Articles</a>
+                <a href="index.html#education" class="link-hover">Education</a>
+                <a href="index.html#references" class="link-hover">References</a>
+                <a href="index.html#contact" class="link-hover">Contact</a>
+                <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="ml-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm flex items-center"><i data-lucide="download" class="mr-2 h-4 w-4"></i> CV</a>
+            </div>
+            <div class="md:hidden"><button id="menu-btn" class="text-white focus:outline-none"><i data-lucide="menu" class="h-6 w-6"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html#about" class="block py-2 px-6 text-sm hover:bg-gray-700">About</a>
+            <a href="index.html#skills" class="block py-2 px-6 text-sm hover:bg-gray-700">Skills</a>
+            <a href="index.html#experience" class="block py-2 px-6 text-sm hover:bg-gray-700">Experience</a>
+            <a href="index.html#projects" class="block py-2 px-6 text-sm hover:bg-gray-700">Projects</a>
+            <a href="index.html#articles" class="block py-2 px-6 text-sm hover:bg-gray-700">Articles</a>
+            <a href="index.html#education" class="block py-2 px-6 text-sm hover:bg-gray-700">Education</a>
+            <a href="index.html#references" class="block py-2 px-6 text-sm hover:bg-gray-700">References</a>
+            <a href="index.html#contact" class="block py-2 px-6 text-sm hover:bg-gray-700">Contact</a>
+            <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="block py-2 px-6 text-sm text-sky-400 hover:bg-gray-700">Download CV</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Project Hero Section -->
+        <section class="project-hero py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">AgriTech: SMS-Controlled Automated Thermostat</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">A low-cost, off-grid automated thermostat for farms that uses simple SMS commands for 24/7 remote monitoring and control.</p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a href="#" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center"><i data-lucide="github" class="mr-2 h-5 w-5"></i> View on GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Content Area -->
+        <article class="container mx-auto px-6 py-12 md:py-20 max-w-4xl project-content text-gray-300 leading-relaxed">
+            
+            <!-- Back Button -->
+            <a href="index.html#projects" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition mb-8 reveal">
+                <i data-lucide="arrow-left" class="h-4 w-4 mr-2"></i>
+                Back to All Projects
+            </a>
+
+            <!-- Overview & Tech Stack -->
+            <section class="grid grid-cols-1 md:grid-cols-5 gap-8 reveal">
+                <div class="md:col-span-3">
+                    <h3>The Problem</h3>
+                    <p>In agriculture, particularly in livestock and poultry farming, maintaining a stable environment is critical. Young animals are extremely sensitive to temperature, and a single cold night or equipment failure can lead to high mortality rates and significant financial losses.</p>
+                    <p>Many "smart" solutions rely on WiFi, which is often unavailable or unreliable in remote, rural farming locations.</p>
+                </div>
+                <div class="md:col-span-2 bg-gray-900 p-6 rounded-lg border border-gray-700">
+                    <h3>Technologies Used</h3>
+                    <div>
+                        <span class="tag">Arduino Uno</span>
+                        <span class="tag">SIM900A GSM Module</span>
+                        <span class="tag">DHT22 Sensor</span>
+                        <span class="tag">5V Relay Module</span>
+                        <span class="tag">C++ (Arduino)</span>
+                        <span class="tag">SMS</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Solution -->
+            <section class="reveal">
+                <h2>My Solution</h2>
+                <p>To solve this, I designed and built a low-cost, off-grid automated thermostat. This system monitors the ambient temperature 24/7 and automatically controls a heating lamp and a cooling fan to maintain a perfect, user-defined temperature.</p>
+                <p>The entire system operates without an internet connection. It is controlled using a <b>SIM900A GSM module</b>, allowing the farmer to monitor and manage the environment from anywhere in the world using simple SMS text commands from any mobile phone.</p>
+            </section>
+
+            <!-- Key Features -->
+            <section class="reveal">
+                <h2>Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-6 bg-gray-900 border border-gray-700 rounded-lg">
+                        <i data-lucide="smartphone" class="w-10 h-10 text-sky-400 mb-3"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Complete SMS Control</h4>
+                        <p class="text-sm">Works anywhere with a 2G mobile signal. Get status reports, set new temperatures, or take manual control (<code>HEAT ON</code>, <code>FAN ON</code>) all via text.</p>
+                    </div>
+                    <div class="p-6 bg-gray-900 border border-gray-700 rounded-lg">
+                        <i data-lucide="thermometer-sun" class="w-10 h-10 text-sky-400 mb-3"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Full Automation</h4>
+                        <p class="text-sm">Automatically holds a target temperature. If the room gets too cold, the heating lamp turns on. If it gets too hot, the fan turns on.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Project Gallery -->
+            <section class="reveal">
+                <h2>Project Gallery</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <figure>
+                        <div class="phone-mockup-sms">
+                            <img src="project_images/7.jpg" alt="SMS control interface">
+                        </div>
+                        <figcaption>Full remote control using simple SMS commands.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="project_images/2.jpg" alt="Prototype in action with heating lamp on">
+                        <figcaption>The prototype in action, with the heating lamp turned on.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="project_images/Circuit-01.jpg" alt="Circuit diagram of the thermostat">
+                        <figcaption>Professional circuit diagram for the system.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="project_images/1.jpg" alt="Wide shot of the complete hardware prototype">
+                        <figcaption>The complete hardware prototype and layout.</figcaption>
+                    </figure>
+                </div>
+            </section>
+            
+        </article>
+    </main>
+    
+    <button id="to-top-button" title="Go To Top" class="hidden fixed bottom-8 right-8 z-50 p-3 bg-sky-500 text-white rounded-full shadow-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-opacity duration-300"><i data-lucide="arrow-up" class="h-6 w-6"></i></button>
+
+    <footer class="border-t border-gray-800"><div class="container mx-auto px-6 py-6 text-center text-gray-500"><p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p></div></footer>
+
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+                const mobileLinks = mobileMenu.getElementsByTagName('a');
+                for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
+            }
+            
+            // Reveal on Scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            if (revealElements.length > 0) {
+                const revealOnScroll = () => { for (let el of revealElements) { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('visible'); } } };
+                window.addEventListener('scroll', revealOnScroll);
+                revealOnScroll();
+            }
+
+            // Back to Top Button
+            const toTopButton = document.getElementById('to-top-button');
+            if (toTopButton) {
+                window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
+                toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            }
+        });
+    </script>
+</body>
+</html>
