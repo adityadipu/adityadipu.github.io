@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Guard Project - Aditya Das Gupta</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>AD</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
+        .glass-effect { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .link-hover { position: relative; transition: color 0.3s ease; padding-bottom: 6px; }
+        .link-hover:after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: #38BDF8; transition: all 0.3s ease-out; }
+        .link-hover:hover { color: #38BDF8; }
+        .link-hover:hover:after { width: 100%; }
+        .tag { background-color: #374151; color: #E5E7EB; display: inline-block; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; margin: 0.25rem; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Project Page Specific Styles */
+        .project-hero {
+            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 1)), url('project_images/finalfocus-01.jpg') no-repeat center center;
+            background-size: cover;
+            border-bottom: 1px solid #374151;
+        }
+        .project-content img { border-radius: 0.5rem; margin-top: 1rem; margin-bottom: 1rem; border: 1px solid #374151; }
+        .project-content h2 { font-size: 2.25rem; font-weight: 700; color: #F9FAFB; margin-top: 3rem; margin-bottom: 1rem; border-bottom: 1px solid #374151; padding-bottom: 0.5rem;}
+        .project-content h3 { font-size: 1.75rem; font-weight: 700; color: #F9FAFB; margin-top: 2rem; margin-bottom: 0.5rem; }
+        .project-content figcaption { text-align: center; font-style: italic; color: #9CA3AF; font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1rem; }
+        .project-content ul { list-style: disc; list-style-position: inside; margin-left: 0.5rem; margin-bottom: 1rem; }
+        .project-content p { margin-bottom: 1rem; line-height: 1.75; }
+        .project-content b { color: #F9FAFB; font-weight: 600; }
+        .feature-card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 glass-effect">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white"><a href="index.html">Aditya Das Gupta</a></div>
+            <div class="hidden md:flex items-center space-x-1 text-sm lg:space-x-2 lg:text-base">
+                <a href="index.html#about" class="link-hover">About</a>
+                <a href="index.html#skills" class="link-hover">Skills</a>
+                <a href="index.html#experience" class="link-hover">Experience</a>
+                <a href="index.html#projects" class="link-hover">Projects</a>
+                <a href="index.html#articles" class="link-hover">Articles</a>
+                <a href="index.html#education" class="link-hover">Education</a>
+                <a href="index.html#references" class="link-hover">References</a>
+                <a href="index.html#contact" class="link-hover">Contact</a>
+                <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="ml-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm flex items-center"><i data-lucide="download" class="mr-2 h-4 w-4"></i> CV</a>
+            </div>
+            <div class="md:hidden"><button id="menu-btn" class="text-white focus:outline-none"><i data-lucide="menu" class="h-6 w-6"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html#about" class="block py-2 px-6 text-sm hover:bg-gray-700">About</a>
+            <a href="index.html#skills" class="block py-2 px-6 text-sm hover:bg-gray-700">Skills</a>
+            <a href="index.html#experience" class="block py-2 px-6 text-sm hover:bg-gray-700">Experience</a>
+            <a href="index.html#projects" class="block py-2 px-6 text-sm hover:bg-gray-700">Projects</a>
+            <a href="index.html#articles" class="block py-2 px-6 text-sm hover:bg-gray-700">Articles</a>
+            <a href="index.html#education" class="block py-2 px-6 text-sm hover:bg-gray-700">Education</a>
+            <a href="index.html#references" class_ ="block py-2 px-6 text-sm hover:bg-gray-700">References</a>
+            <a href="index.html#contact" class="block py-2 px-6 text-sm hover:bg-gray-700">Contact</a>
+            <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="block py-2 px-6 text-sm text-sky-400 hover:bg-gray-700">Download CV</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Project Hero Section -->
+        <section class="project-hero py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">Focus Guard: A Full-Stack IoT Productivity System</h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">A tangible IoT device and native Android app I built from scratch to automatically manage a phone's 'Do Not Disturb' (DND) mode and track focus statistics.</p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a href="#" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center"><i data-lucide="github" class="mr-2 h-5 w-5"></i> View on GitHub</a>
+                    <!-- Add YouTube link when available -->
+                    <a href="#" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center"><i data-lucide="youtube" class="mr-2 h-5 w-5"></i> Watch the Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Content Area -->
+        <article class="container mx-auto px-6 py-12 md:py-20 max-w-4xl project-content text-gray-300 leading-relaxed">
+            
+            <!-- Back Button -->
+            <a href="index.html#projects" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition mb-8 reveal">
+                <i data-lucide="arrow-left" class="h-4 w-4 mr-2"></i>
+                Back to All Projects
+            </a>
+
+            <!-- Overview -->
+            <section class="reveal">
+                <h3>The Problem, The Solution</h3>
+                <p>In today's world, digital distractions are the #1 killer of productivity. The constant stream of notifications breaks our concentration and makes deep work nearly impossible. Software-only timers are easily ignored and still require interacting with the source of distraction—the phone.</p>
+                <p>To solve this, I designed and built Focus Guard, a complete, end-to-end system. It combines a physical, tangible timer with a native Android app. A single button press on the device creates a "distraction-free bubble" by automatically sealing the phone in 'Do Not Disturb' mode.</p>
+            </section>
+            
+            <!-- Key Features -->
+            <section class="reveal">
+                <h2>Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="feature-card">
+                        <i data-lucide="smartphone-nfc" class="w-12 h-12 text-sky-400 mb-4"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Automatic DND Control</h4>
+                        <p class="text-sm">A ForegroundService automatically activates/deactivates DND mode for a truly distraction-free environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="refresh-cw" class="w-12 h-12 text-sky-400 mb-4"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Real-Time Hardware Sync</h4>
+                        <p class="text-sm">An ESP8266 web server allows the app and device to stay perfectly in sync. Control from one is reflected on the other.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="bar-chart-3" class="w-12 h-12 text-sky-400 mb-4"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Productivity Statistics</h4>
+                        <p class="text-sm">Completed sessions are saved to a local Room Database and visualized in a bar chart using MPAndroidChart.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i data-lucide="cpu" class="w-12 h-12 text-sky-400 mb-4"></i>
+                        <h4 class="text-xl font-bold text-white mb-2">Tangible Interface</h4>
+                        <p class="text-sm">A custom device with an OLED menu, RGB status light, and audio alerts provides a physical way to manage time.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Technical Architecture -->
+            <section class="reveal">
+                <h2>Technical Architecture</h2>
+                
+                <h3>Part 1: The Hardware & Enclosure</h3>
+                <p>I chose the ESP8266 for its built-in Wi-Fi and low cost. An OLED display provides visual feedback, while a buzzer and RGB LED give audio and status alerts. I designed and built a custom enclosure to house all components, creating a polished, final product complete with a QR code for app download.</p>
+                <figure>
+                    <img src="project_images/full box-01.jpg" alt="Composite image showing final box, internal wiring, and QR code">
+                    <figcaption>Final product, internal wiring, and quick-start guide.</figcaption>
+                </figure>
+
+                <h3>Part 2: The Firmware (ESP8266)</h3>
+                <p>The device's brain was written in C++ (Arduino) and implements a robust state machine (IDLE, FOCUS, BREAK). It runs an <b>ESP8266WebServer</b> that serves a RESTful API to the app. I optimized the <code>/status</code> endpoint for memory safety by using <b>ArduinoJson</b> with a static char buffer, preventing heap fragmentation and ensuring long-term stability.</p>
+                <figure>
+                    <img src="project_images/Ckt_diagram-02.png" alt="Circuit diagram for the Focus Guard device">
+                    <figcaption>Professional wiring schematic for the hardware.</figcaption>
+                </figure>
+
+                <h3>Part 3: The Native Android App (Kotlin)</h3>
+                <p>The app is built natively in <b>Kotlin</b> using Material Design 3. It communicates with the device's API using the <b>Volley</b> library. To ensure DND control and polling continued even when the app was in the background, I architected it around a persistent <b>ForegroundService</b>. All statistics are saved locally using a <b>Room Database</b>.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <figure>
+                        <img src="project_images/dark.jpg" alt="App screenshot in dark mode">
+                        <figcaption>App idle screen (Dark Mode).</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="project_images/break2.jpg" alt="App screenshot showing statistics toast">
+                        <figcaption>Session data logged to local database.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Media Gallery -->
+            <section class="reveal">
+                <h2>Media Gallery</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <figure>
+                        <img src="project_images/finalfocus-01.jpg" alt="System in FOCUS mode">
+                        <figcaption>In <b>FOCUS</b> mode, the app, DND status, and physical device are all synchronized. The device's light turns red.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="project_images/finalbreak-01.jpg" alt="System in BREAK mode">
+                        <figcaption>During a <b>BREAK</b>, the DND mode is automatically deactivated. The device's light turns green and the app updates.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+        </article>
+    </main>
+    
+    <button id="to-top-button" title="Go To Top" class="hidden fixed bottom-8 right-8 z-50 p-3 bg-sky-500 text-white rounded-full shadow-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-opacity duration-300"><i data-lucide="arrow-up" class="h-6 w-6"></i></button>
+
+    <footer class="border-t border-gray-800"><div class="container mx-auto px-6 py-6 text-center text-gray-500"><p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p></div></footer>
+
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+                const mobileLinks = mobileMenu.getElementsByTagName('a');
+                for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
+            }
+            
+            // Reveal on Scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            if (revealElements.length > 0) {
+                const revealOnScroll = () => { for (let el of revealElements) { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('visible'); } } };
+                window.addEventListener('scroll', revealOnScroll);
+                revealOnScroll();
+            }
+
+            // Back to Top Button
+            const toTopButton = document.getElementById('to-top-button');
+            if (toTopButton) {
+                window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
+                toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            }
+        });
+    </script>
+</body>
+</html>
