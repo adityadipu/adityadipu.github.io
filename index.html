@@ -218,248 +218,266 @@
     <script>
         lucide.createIcons();
 
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-        const mobileLinks = mobileMenu.getElementsByTagName('a');
-        for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
-        
-        // Typing Animation
-        const typedTextSpan = document.getElementById('typed-text'), textArray = ["Electrical & Electronics Engineer", "AI Enthusiast", "Tech Innovator"];
-        let textArrayIndex = 0, charIndex = 0;
-        function type() { if (charIndex < textArray[textArrayIndex].length) { typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex++); setTimeout(type, 100); } else { setTimeout(erase, 2000); } }
-        function erase() { if (charIndex > 0) { typedTextSpan.textContent = textArray[textArrayIndex].substring(0, --charIndex); setTimeout(erase, 50); } else { textArrayIndex = ++textArrayIndex % textArray.length; setTimeout(type, 1200); } }
-        document.addEventListener("DOMContentLoaded", () => { if(textArray.length) setTimeout(type, 2250); });
-        
-        // Reveal on Scroll
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => { for (let el of revealElements) { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('visible'); } } };
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-
-        // Back to Top Button
-        const toTopButton = document.getElementById('to-top-button');
-        window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
-        toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
-        
-        // Active Nav Link Highlighting
-        const sections = document.querySelectorAll('section[id]'), navLinks = document.querySelectorAll('header nav a');
-        const activateMenuLink = () => {
-            let index = sections.length;
-            while(--index && window.scrollY + 80 < sections[index].offsetTop) {}
-            navLinks.forEach(link => link.classList.remove('nav-active'));
-            const activeLink = document.querySelector(`header nav a[href="#${sections[index].id}"]`);
-            if (activeLink) activeLink.classList.add('nav-active');
-        };
-        window.addEventListener('scroll', activateMenuLink);
-        activateMenuLink();
-
-        // Project Modal Logic
-        const projectsData = {
-            'ai-glucose': {
-                title: 'AI Blood Glucose Predictor',
-                content: `
-                    <h3>Overview</h3>
-                    <p>This project is the practical application of my undergraduate thesis. It involves an AI model developed using Python and TensorFlow that can predict blood glucose levels from non-invasive data, with a strong focus on Explainable AI (XAI) to ensure the model's predictions are understandable and trustworthy.</p>
-                    <h3>Key Features</h3>
-                    <ul class="list-disc list-inside my-4 space-y-2">
-                        <li>Non-invasive data collection methodology.</li>
-                        <li>Advanced deep learning model built with TensorFlow.</li>
-                        <li>Implementation of XAI techniques like LIME and SHAP for model interpretability.</li>
-                        <li>Scripts for robust data preprocessing and feature engineering.</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 my-4">
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span>
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span>
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">Scikit-learn</span>
-                        <span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span>
-                    </div>
-                    <div class="mt-6 flex space-x-4">
-                        <a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a>
-                        <a href="https://huggingface.co/spaces/mlresearchhub/glycemic-predictor" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="external-link" class="h-5 w-5 mr-2"></i>Live Demo</a>
-                    </div>
-                `
-            },
-            'cactus-pot': {
-                title: 'Smart Cactus Pot with IoT Monitoring and ML Anomaly Detection',
-                content: `
-                    <figure>
-                        <img src="project_images/project_hardware.jpg" alt="Project Hardware" class="w-full h-auto object-cover">
-                        <figcaption>The complete solar-powered hardware setup.</figcaption>
-                    </figure>
-                    <h3>Overview</h3>
-                    <p>This project is a self-sustaining, solar-powered smart plant pot designed to monitor the health of a cactus. It uses an ESP8266 to collect real-time sensor data, which is visualized on a Blynk mobile app. Furthermore, the collected data is analyzed using machine learning (an Isolation Forest model) to automatically detect anomalous conditions, such as critically dry soil.</p>
-                    
-                    <h3>Key Features</h3>
-                    <ul class="list-disc list-inside my-4 space-y-2">
-                        <li><b>Real-Time Monitoring:</b> Tracks temperature, humidity, soil moisture, light level, and CO2 via a live Blynk dashboard.</li>
-                        <li><b>Data-Driven Insights:</b> Uses Python for exploratory data analysis to understand sensor correlations and data clusters.</li>
-                        <li><b>Intelligent Anomaly Detection:</b> A machine learning model identifies unusual environmental states that may require user intervention.</li>
-                        <li><b>Eco-Friendly:</b> The entire system is powered by a solar panel and battery, making it fully autonomous.</li>
-                    </ul>
-
-                    <h3>Hardware and Software</h3>
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <div class="flex-1">
-                            <b>Hardware Components:</b>
-                            <ul class="list-disc list-inside mt-2">
-                                <li>ESP8266 Microcontroller</li>
-                                <li>DHT11/22 Sensor</li>
-                                <li>Soil Moisture Sensor</li>
-                                <li>Light Dependent Resistor (LDR)</li>
-                                <li>CO2 Sensor (MQ-135)</li>
-                                <li>Solar Panel & Battery Module</li>
-                            </ul>
-                        </div>
-                        <div class="flex-1">
-                            <b>Software & Technologies:</b>
-                            <ul class="list-disc list-inside mt-2">
-                                <li>Arduino IDE</li>
-                                <li>Blynk IoT Platform</li>
-                                <li>Python 3</li>
-                                <li>Pandas, Scikit-learn, Matplotlib</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <h3>Mobile App Interface</h3>
-                    <p>The Blynk mobile app provides a clean, intuitive dashboard to monitor all sensor data in real-time:</p>
-                    <figure>
-                        <img src="project_images/blynk_dashboard.png.jpg" alt="Blynk Mobile App">
-                        <figcaption>Live data dashboard on the Blynk mobile app.</figcaption>
-                    </figure>
-
-                    <h3>Machine Learning Analysis: Anomaly Detection</h3>
-                    <p>Instead of using simple if/else rules, this project leverages an Isolation Forest algorithm to learn the "normal" operating conditions from the sensor data. The model then identifies data points that deviate significantly from this norm. The plot below shows the soil moisture over time, with the red 'X's marking the anomalies detected by the model—these represent the most critical moments when the plant likely needed water.</p>
-                    <figure>
-                        <img src="project_images/anomaly_detection.png" alt="Anomaly Detection Plot">
-                        <figcaption>Isolation Forest identifying critical low-moisture events.</figcaption>
-                    </figure>
-                    
-                    <h3>Future Plans</h3>
-                    <p>My goal is to evolve this prototype into a fully smart, self-powered cactus pot integrating a dedicated mobile app. The next phase will involve using the ML anomaly alerts to automatically trigger a water pump and developing a custom mobile application for a more tailored user experience.</p>
-
-                    <div class="mt-6">
-                        <a href="https://lnkd.in/eeQRY7bA" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View on GitHub</a>
-                    </div>
-                `
-            },
-            'smart-tank': {
-                title: 'Smart Tank: Automated Water Management System',
-                content: `
-                    <h3>Introduction</h3>
-                    <p>Tired of manual water level checks and wasted water? Our Smart Tank system offers an automated, intelligent solution for efficient water management across multiple tanks. It ensures optimal water levels, prevents overflow, and provides real-time control, all from your smartphone.</p>
-                    
-                    <figure>
-                        <img src="Final 3.jpg" alt="Hardware Setup: Automated Water Management" class="w-full h-auto object-cover">
-                        <figcaption>Hardware Setup: Automated Water Management</figcaption>
-                    </figure>
-
-                    <h3>How It Works</h3>
-                    <p>The system utilizes three interconnected tanks: a Supply Reservoir (source), a Smart Tank (main monitored tank with sensors), and a Distribution Tank (for usage). An ESP8266 microcontroller continuously monitors the Smart Tank's level using an ultrasonic sensor. This data is wirelessly transmitted to a custom Android application.</p>
-                    <p class="mt-2">Based on user-defined thresholds, the system automatically activates a submersible pump in the Supply Reservoir to fill the Smart Tank, maintaining precise water levels without manual intervention.</p>
-                    
-                    <figure>
-                        <img src="Schemetic Diagram-01.jpg" alt="System Architecture Overview" class="w-full h-auto object-cover">
-                        <figcaption>System Architecture Overview</figcaption>
-                    </figure>
-
-                    <h3>Key Features</h3>
-                    <ul class="list-disc list-inside my-4 space-y-2">
-                        <li><b>Real-time Monitoring:</b> View current water levels (percentage and depth) instantly via the Android app.</li>
-                        <li><b>Automated Pump Control:</b> Set desired fill levels; the pump manages itself.</li>
-                        <li><b>Manual Override:</b> Full manual control (ON/OFF) of the pump from the app.</li>
-                        <li><b>Critical Level Alerts:</b> Receive instant push notifications for low or full tank conditions.</li>
-                        <li><b>Intuitive Mobile App:</b> User-friendly interface for seamless control and data visualization.</li>
-                    </ul>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <figure>
-                            <img src="Homepage.jpg" alt="Android App Interface - Homepage" class="w-full h-auto object-cover">
-                            <figcaption>Android App Homepage</figcaption>
-                        </figure>
-                        <figure>
-                            <img src="Final 2.jpg" alt="Real-time Monitoring on App" class="w-full h-auto object-cover">
-                            <figcaption>Real-time Monitoring</figcaption>
-                        </figure>
-                    </div>
-
-                    <h3>Technology Stack</h3>
-                    <div class="flex flex-col md:flex-row gap-8 mt-4">
-                        <div class="flex-1">
-                            <b>Hardware:</b>
-                            <ul class="list-disc list-inside mt-2">
-                                <li>ESP8266 Microcontroller</li>
-                                <li>Ultrasonic Sensor (HC-SR04)</li>
-                                <li>Submersible Pump</li>
-                            </ul>
-                        </div>
-                        <div class="flex-1">
-                            <b>Software & Cloud:</b>
-                            <ul class="list-disc list-inside mt-2">
-                                <li>Android (Kotlin)</li>
-                                <li>MQTT Protocol (hivemq.com)</li>
-                                <li>Firebase Cloud Messaging (FCM)</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <h3>Conclusion / Future Scope</h3>
-                    <p class="mt-4">This prototype demonstrates a robust solution for home, industrial, or agricultural water management, reducing manual effort and preventing resource waste. Future enhancements could include historical data analytics, multi-tank synchronization, and integration with smart home platforms.</p>
-                `
+        // Wait for the DOM to be fully loaded before running scripts
+        document.addEventListener("DOMContentLoaded", () => {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+                const mobileLinks = mobileMenu.getElementsByTagName('a');
+                for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
             }
-        };
-
-        const modal = document.getElementById('project-modal');
-        const modalContainer = modal.querySelector('.modal-container');
-        const modalBody = document.getElementById('modal-body');
-        const closeModalBtn = document.getElementById('modal-close-btn');
-        const projectTriggers = document.querySelectorAll('.project-modal-trigger');
-
-        const openModal = (projectId) => {
-            const project = projectsData[projectId];
-            if (!project) return;
             
-            modalBody.innerHTML = `
-                <h2 class="text-3xl font-bold text-white mb-4">${project.title}</h2>
-                <div class="text-gray-300 leading-relaxed modal-content">${project.content}</div>
-            `;
-            lucide.createIcons();
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            // Corrected Line: Apply opacity transition to 'modal' (which has .modal-overlay class)
-            setTimeout(() => {
-                modal.classList.remove('opacity-0'); 
-                modalContainer.classList.remove('opacity-0', 'scale-95');
-            }, 10);
-            // Scroll modal to top
-            modalBody.scrollTop = 0;
-        };
-
-        const closeModal = () => {
-            // Corrected Line: Apply opacity transition to 'modal' (which has .modal-overlay class)
-            modal.classList.add('opacity-0');
-            modalContainer.classList.add('opacity-0', 'scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        };
-
-        projectTriggers.forEach(button => {
-            button.addEventListener('click', () => {
-                const projectId = button.dataset.projectId;
-                openModal(projectId);
-            });
-        });
-
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                closeModal();
+            // Typing Animation
+            const typedTextSpan = document.getElementById('typed-text'), textArray = ["Electrical & Electronics Engineer", "AI Enthusiast", "Tech Innovator"];
+            if (typedTextSpan && textArray.length > 0) {
+                let textArrayIndex = 0, charIndex = 0;
+                function type() { if (charIndex < textArray[textArrayIndex].length) { typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex++); setTimeout(type, 100); } else { setTimeout(erase, 2000); } }
+                function erase() { if (charIndex > 0) { typedTextSpan.textContent = textArray[textArrayIndex].substring(0, --charIndex); setTimeout(erase, 50); } else { textArrayIndex = ++textArrayIndex % textArray.length; setTimeout(type, 1200); } }
+                setTimeout(type, 2250);
             }
-        });
+            
+            // Reveal on Scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            if (revealElements.length > 0) {
+                const revealOnScroll = () => { for (let el of revealElements) { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('visible'); } } };
+                window.addEventListener('scroll', revealOnScroll);
+                revealOnScroll();
+            }
 
+            // Back to Top Button
+            const toTopButton = document.getElementById('to-top-button');
+            if (toTopButton) {
+                window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
+                toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            }
+            
+            // Active Nav Link Highlighting
+            const sections = document.querySelectorAll('section[id]'), navLinks = document.querySelectorAll('header nav a');
+            if (sections.length > 0 && navLinks.length > 0) {
+                const activateMenuLink = () => {
+                    let index = sections.length;
+                    while(--index && window.scrollY + 80 < sections[index].offsetTop) {}
+                    navLinks.forEach(link => link.classList.remove('nav-active'));
+                    const activeLink = document.querySelector(`header nav a[href="#${sections[index].id}"]`);
+                    if (activeLink) activeLink.classList.add('nav-active');
+                };
+                window.addEventListener('scroll', activateMenuLink);
+                activateMenuLink();
+            }
+
+            // Project Modal Logic
+            const projectsData = {
+                'ai-glucose': {
+                    title: 'AI Blood Glucose Predictor',
+                    content: `
+                        <h3>Overview</h3>
+                        <p>This project is the practical application of my undergraduate thesis. It involves an AI model developed using Python and TensorFlow that can predict blood glucose levels from non-invasive data, with a strong focus on Explainable AI (XAI) to ensure the model's predictions are understandable and trustworthy.</p>
+                        <h3>Key Features</h3>
+                        <ul class="list-disc list-inside my-4 space-y-2">
+                            <li>Non-invasive data collection methodology.</li>
+                            <li>Advanced deep learning model built with TensorFlow.</li>
+                            <li>Implementation of XAI techniques like LIME and SHAP for model interpretability.</li>
+                            <li>Scripts for robust data preprocessing and feature engineering.</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 my-4">
+                            <span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                            <span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="tag text-sm font-medium px-3 py-1 rounded-full">Scikit-learn</span>
+                            <span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span>
+                        </div>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View Code</a>
+                            <a href="https://huggingface.co/spaces/mlresearchhub/glycemic-predictor" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="external-link" class="h-5 w-5 mr-2"></i>Live Demo</a>
+                        </div>
+                    `
+                },
+                'cactus-pot': {
+                    title: 'Smart Cactus Pot with IoT Monitoring and ML Anomaly Detection',
+                    content: `
+                        <figure>
+                            <img src="project_images/project_hardware.jpg" alt="Project Hardware" class="w-full h-auto object-cover">
+                            <figcaption>The complete solar-powered hardware setup.</figcaption>
+                        </figure>
+                        <h3>Overview</h3>
+                        <p>This project is a self-sustaining, solar-powered smart plant pot designed to monitor the health of a cactus. It uses an ESP8266 to collect real-time sensor data, which is visualized on a Blynk mobile app. Furthermore, the collected data is analyzed using machine learning (an Isolation Forest model) to automatically detect anomalous conditions, such as critically dry soil.</p>
+                        
+                        <h3>Key Features</h3>
+                        <ul class="list-disc list-inside my-4 space-y-2">
+                            <li><b>Real-Time Monitoring:</b> Tracks temperature, humidity, soil moisture, light level, and CO2 via a live Blynk dashboard.</li>
+                            <li><b>Data-Driven Insights:</b> Uses Python for exploratory data analysis to understand sensor correlations and data clusters.</li>
+                            <li><b>Intelligent Anomaly Detection:</b> A machine learning model identifies unusual environmental states that may require user intervention.</li>
+                            <li><b>Eco-Friendly:</b> The entire system is powered by a solar panel and battery, making it fully autonomous.</li>
+                        </ul>
+
+                        <h3>Hardware and Software</h3>
+                        <div class="flex flex-col md:flex-row gap-8">
+                            <div class="flex-1">
+                                <b>Hardware Components:</b>
+                                <ul class="list-disc list-inside mt-2">
+                                    <li>ESP8266 Microcontroller</li>
+                                    <li>DHT11/22 Sensor</li>
+                                    <li>Soil Moisture Sensor</li>
+                                    <li>Light Dependent Resistor (LDR)</li>
+                                    <li>CO2 Sensor (MQ-135)</li>
+                                    <li>Solar Panel & Battery Module</li>
+                                </ul>
+                            </div>
+                            <div class="flex-1">
+                                <b>Software & Technologies:</b>
+                                <ul class="list-disc list-inside mt-2">
+                                    <li>Arduino IDE</li>
+                                    <li>Blynk IoT Platform</li>
+                                    <li>Python 3</li>
+                                    <li>Pandas, Scikit-learn, Matplotlib</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Mobile App Interface</h3>
+                        <p>The Blynk mobile app provides a clean, intuitive dashboard to monitor all sensor data in real-time:</p>
+                        <figure>
+                            <img src="project_images/blynk_dashboard.png.jpg" alt="Blynk Mobile App">
+                            <figcaption>Live data dashboard on the Blynk mobile app.</figcaption>
+                        </figure>
+
+                        <h3>Machine Learning Analysis: Anomaly Detection</h3>
+                        <p>Instead of using simple if/else rules, this project leverages an Isolation Forest algorithm to learn the "normal" operating conditions from the sensor data. The model then identifies data points that deviate significantly from this norm. The plot below shows the soil moisture over time, with the red 'X's marking the anomalies detected by the model—these represent the most critical moments when the plant likely needed water.</p>
+                        <figure>
+                            <img src="project_images/anomaly_detection.png" alt="Anomaly Detection Plot">
+                            <figcaption>Isolation Forest identifying critical low-moisture events.</figcaption>
+                        </figure>
+                        
+                        <h3>Future Plans</h3>
+                        <p>My goal is to evolve this prototype into a fully smart, self-powered cactus pot integrating a dedicated mobile app. The next phase will involve using the ML anomaly alerts to automatically trigger a water pump and developing a custom mobile application for a more tailored user experience.</p>
+
+                        <div class="mt-6">
+                            <a href="https://lnkd.in/eeQRY7bA" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition"><i data-lucide="github" class="h-5 w-5 mr-2"></i>View on GitHub</a>
+                        </div>
+                    `
+                },
+                'smart-tank': {
+                    title: 'Smart Tank: Automated Water Management System',
+                    content: `
+                        <h3>Introduction</h3>
+                        <p>Tired of manual water level checks and wasted water? Our Smart Tank system offers an automated, intelligent solution for efficient water management across multiple tanks. It ensures optimal water levels, prevents overflow, and provides real-time control, all from your smartphone.</p>
+                        
+                        <figure>
+                            <img src="Final 3.jpg" alt="Hardware Setup: Automated Water Management" class="w-full h-auto object-cover">
+                            <figcaption>Hardware Setup: Automated Water Management</figcaption>
+                        </figure>
+
+                        <h3>How It Works</h3>
+                        <p>The system utilizes three interconnected tanks: a Supply Reservoir (source), a Smart Tank (main monitored tank with sensors), and a Distribution Tank (for usage). An ESP8266 microcontroller continuously monitors the Smart Tank's level using an ultrasonic sensor. This data is wirelessly transmitted to a custom Android application.</p>
+                        <p class="mt-2">Based on user-defined thresholds, the system automatically activates a submersible pump in the Supply Reservoir to fill the Smart Tank, maintaining precise water levels without manual intervention.</p>
+                        
+                        <figure>
+                            <img src="Schemetic Diagram-01.jpg" alt="System Architecture Overview" class="w-full h-auto object-cover">
+                            <figcaption>System Architecture Overview</figcaption>
+                        </figure>
+
+                        <h3>Key Features</h3>
+                        <ul class="list-disc list-inside my-4 space-y-2">
+                            <li><b>Real-time Monitoring:</b> View current water levels (percentage and depth) instantly via the Android app.</li>
+                            <li><b>Automated Pump Control:</b> Set desired fill levels; the pump manages itself.</li>
+                            <li><b>Manual Override:</b> Full manual control (ON/OFF) of the pump from the app.</li>
+                            <li><b>Critical Level Alerts:</b> Receive instant push notifications for low or full tank conditions.</li>
+                            <li><b>Intuitive Mobile App:</b> User-friendly interface for seamless control and data visualization.</li>
+                        </ul>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <figure>
+                                <img src="Homepage.jpg" alt="Android App Interface - Homepage" class="w-full h-auto object-cover">
+                                <figcaption>Android App Homepage</figcaption>
+                            </figure>
+                            <figure>
+                                <img src="Final 2.jpg" alt="Real-time Monitoring on App" class="w-full h-auto object-cover">
+                                <figcaption>Real-time Monitoring</figcaption>
+                            </figure>
+                        </div>
+
+                        <h3>Technology Stack</h3>
+                        <div class="flex flex-col md:flex-row gap-8 mt-4">
+                            <div class="flex-1">
+                                <b>Hardware:</b>
+                                <ul class="list-disc list-inside mt-2">
+                                    <li>ESP8266 Microcontroller</li>
+                                    <li>Ultrasonic Sensor (HC-SR04)</li>
+                                    <li>Submersible Pump</li>
+                                </ul>
+                            </div>
+                            <div class="flex-1">
+                                <b>Software & Cloud:</b>
+                                <ul class="list-disc list-inside mt-2">
+                                    <li>Android (Kotlin)</li>
+                                    <li>MQTT Protocol (hivemq.com)</li>
+                                    <li>Firebase Cloud Messaging (FCM)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3>Conclusion / Future Scope</h3>
+                        <p class="mt-4">This prototype demonstrates a robust solution for home, industrial, or agricultural water management, reducing manual effort and preventing resource waste. Future enhancements could include historical data analytics, multi-tank synchronization, and integration with smart home platforms.</p>
+                    `
+                }
+            };
+
+            const modal = document.getElementById('project-modal');
+            const modalContainer = modal.querySelector('.modal-container');
+            const modalBody = document.getElementById('modal-body');
+            const closeModalBtn = document.getElementById('modal-close-btn');
+            const projectTriggers = document.querySelectorAll('.project-modal-trigger');
+
+            if (modal && modalContainer && modalBody && closeModalBtn && projectTriggers.length > 0) {
+                const openModal = (projectId) => {
+                    const project = projectsData[projectId];
+                    if (!project) {
+                        console.error("Project data not found for ID:", projectId);
+                        return;
+                    }
+                    
+                    modalBody.innerHTML = `
+                        <h2 class="text-3xl font-bold text-white mb-4">${project.title}</h2>
+                        <div class="text-gray-300 leading-relaxed modal-content">${project.content}</div>
+                    `;
+                    lucide.createIcons(); // Re-initialize icons inside modal
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                    
+                    setTimeout(() => {
+                        modal.classList.remove('opacity-0'); 
+                        modalContainer.classList.remove('opacity-0', 'scale-95');
+                    }, 10);
+                    
+                    modalBody.scrollTop = 0;
+                };
+
+                const closeModal = () => {
+                    modal.classList.add('opacity-0');
+                    modalContainer.classList.add('opacity-0', 'scale-95');
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }, 300);
+                };
+
+                projectTriggers.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const projectId = button.dataset.projectId;
+                        openModal(projectId);
+                    });
+                });
+
+                closeModalBtn.addEventListener('click', closeModal);
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        closeModal();
+                    }
+                });
+            } else {
+                console.error("Modal components not found. Check your HTML IDs and script placement.");
+            }
+        }); // End of DOMContentLoaded
     </script>
 </body>
 </html>
