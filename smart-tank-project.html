@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Tank Project - Aditya Das Gupta</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>AD</text></svg>">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #E5E7EB; }
+        .glass-effect { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .link-hover { position: relative; transition: color 0.3s ease; padding-bottom: 6px; }
+        .link-hover:after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: #38BDF8; transition: all 0.3s ease-out; }
+        .link-hover:hover { color: #38BDF8; }
+        .link-hover:hover:after { width: 100%; }
+        .tag { background-color: #374151; color: #E5E7EB; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Project Page Specific Styles */
+        .project-content img { border-radius: 0.5rem; margin-top: 1rem; margin-bottom: 1rem; }
+        .project-content h3 { font-size: 1.75rem; font-weight: 700; color: #F9FAFB; margin-top: 2rem; margin-bottom: 0.5rem; border-bottom: 1px solid #374151; padding-bottom: 0.5rem;}
+        .project-content figcaption { text-align: center; font-style: italic; color: #9CA3AF; font-size: 0.9rem; margin-top: -0.5rem; margin-bottom: 1rem; }
+        .project-content ul { list-style: disc; list-style-position: inside; margin-left: 0.5rem; margin-bottom: 1rem; }
+        .project-content p { margin-bottom: 1rem; line-height: 1.75; }
+        .project-content b { color: #F9FAFB; font-weight: 600; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 glass-effect">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white"><a href="portfolio.html">Aditya Das Gupta</a></div>
+            <div class="hidden md:flex items-center space-x-1 text-sm lg:space-x-2 lg:text-base">
+                <a href="portfolio.html#about" class="link-hover">About</a>
+                <a href="portfolio.html#skills" class="link-hover">Skills</a>
+                <a href="portfolio.html#experience" class="link-hover">Experience</a>
+                <a href="portfolio.html#projects" class="link-hover">Projects</a>
+                <a href="portfolio.html#articles" class="link-hover">Articles</a>
+                <a href="portfolio.html#education" class="link-hover">Education</a>
+                <a href="portfolio.html#references" class="link-hover">References</a>
+                <a href="portfolio.html#contact" class="link-hover">Contact</a>
+                <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="ml-4 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 text-sm flex items-center"><i data-lucide="download" class="mr-2 h-4 w-4"></i> CV</a>
+            </div>
+            <div class="md:hidden"><button id="menu-btn" class="text-white focus:outline-none"><i data-lucide="menu" class="h-6 w-6"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="portfolio.html#about" class="block py-2 px-6 text-sm hover:bg-gray-700">About</a>
+            <a href="portfolio.html#skills" class="block py-2 px-6 text-sm hover:bg-gray-700">Skills</a>
+            <a href="portfolio.html#experience" class="block py-2 px-6 text-sm hover:bg-gray-700">Experience</a>
+            <a href="portfolio.html#projects" class="block py-2 px-6 text-sm hover:bg-gray-700">Projects</a>
+            <a href="portfolio.html#articles" class="block py-2 px-6 text-sm hover:bg-gray-700">Articles</a>
+            <a href="portfolio.html#education" class="block py-2 px-6 text-sm hover:bg-gray-700">Education</a>
+            <a href="portfolio.html#references" class="block py-2 px-6 text-sm hover:bg-gray-700">References</a>
+            <a href="portfolio.html#contact" class="block py-2 px-6 text-sm hover:bg-gray-700">Contact</a>
+            <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="block py-2 px-6 text-sm text-sky-400 hover:bg-gray-700">Download CV</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Project Content Area -->
+        <article class="max-w-4xl mx-auto project-content text-gray-300 leading-relaxed">
+            
+            <!-- Back Button -->
+            <a href="portfolio.html#projects" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition mb-8 reveal">
+                <i data-lucide="arrow-left" class="h-4 w-4 mr-2"></i>
+                Back to All Projects
+            </a>
+
+            <!-- Project Header -->
+            <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight reveal">Smart Tank: Automated Water Management System</h1>
+            
+            <div class="flex flex-wrap gap-2 my-4 reveal">
+                <span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span>
+                <span class="tag text-sm font-medium px-3 py-1 rounded-full">Android</span>
+                <span class="tag text-sm font-medium px-3 py-1 rounded-full">Kotlin</span>
+                <span class="tag text-sm font-medium px-3 py-1 rounded-full">MQTT</span>
+                <span class="tag text-sm font-medium px-3 py-1 rounded-full">Firebase</span>
+                <span class="tag text-sm font-medium px-3 py-1 rounded-full">ESP8266</span>
+            </div>
+            
+            <div class="reveal">
+                <h3>Introduction</h3>
+                <p>Tired of manual water level checks and wasted water? Our Smart Tank system offers an automated, intelligent solution for efficient water management across multiple tanks. It ensures optimal water levels, prevents overflow, and provides real-time control, all from your smartphone.</p>
+                
+                <figure>
+                    <img src="project_images/Final 3.jpg" alt="Hardware Setup: Automated Water Management" class="w-full h-auto object-cover">
+                    <figcaption>Hardware Setup: Automated Water Management</figcaption>
+                </figure>
+            </div>
+
+            <div class="reveal">
+                <h3>How It Works</h3>
+                <p>The system utilizes three interconnected tanks: a Supply Reservoir (source), a Smart Tank (main monitored tank with sensors), and a Distribution Tank (for usage). An ESP8266 microcontroller continuously monitors the Smart Tank's level using an ultrasonic sensor. This data is wirelessly transmitted to a custom Android application.</p>
+                <p class="mt-2">Based on user-defined thresholds, the system automatically activates a submersible pump in the Supply Reservoir to fill the Smart Tank, maintaining precise water levels without manual intervention.</p>
+                
+                <figure>
+                    <img src="project_images/Schemetic Diagram-01.jpg" alt="System Architecture Overview" class="w-full h-auto object-cover">
+                    <figcaption>System Architecture Overview</figcaption>
+                </figure>
+            </div>
+
+            <div class="reveal">
+                <h3>Key Features</h3>
+                <ul class="list-disc list-inside my-4 space-y-2">
+                    <li><b>Real-time Monitoring:</b> View current water levels (percentage and depth) instantly via the Android app.</li>
+                    <li><b>Automated Pump Control:</b> Set desired fill levels; the pump manages itself.</li>
+                    <li><b>Manual Override:</b> Full manual control (ON/OFF) of the pump from the app.</li>
+                    <li><b>Critical Level Alerts:</b> Receive instant push notifications for low or full tank conditions.</li>
+                    <li><b>Intuitive Mobile App:</b> User-friendly interface for seamless control and data visualization.</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 reveal">
+                <figure>
+                    <img src="project_images/Homepage.jpg" alt="Android App Interface - Homepage" class="w-full h-auto object-cover">
+                    <figcaption>Android App Homepage</figcaption>
+                </figure>
+                <figure>
+                    <img src="project_images/Final 2.jpg" alt="Real-time Monitoring on App" class="w-full h-auto object-cover">
+                    <figcaption>Real-time Monitoring</figcaption>
+                </figure>
+            </div>
+
+            <div class="reveal">
+                <h3>Technology Stack</h3>
+                <div class="flex flex-col md:flex-row gap-8 mt-4">
+                    <div class="flex-1">
+                        <b>Hardware:</b>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>ESP8266 Microcontroller</li>
+                            <li>Ultrasonic Sensor (HC-SR04)</li>
+                            <li>Submersible Pump</li>
+                        </ul>
+                    </div>
+                    <div class="flex-1">
+                        <b>Software & Cloud:</b>
+                        <ul class="list-disc list-inside mt-2">
+                            <li>Android (Kotlin)</li>
+                            <li>MQTT Protocol (hivemq.com)</li>
+                            <li>Firebase Cloud Messaging (FCM)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <h3>Conclusion / Future Scope</h3>
+                <p class="mt-4">This prototype demonstrates a robust solution for home, industrial, or agricultural water management, reducing manual effort and preventing resource waste. Future enhancements could include historical data analytics, multi-tank synchronization, and integration with smart home platforms.</p>
+            </div>
+            
+        </article>
+
+    </main>
+    
+    <button id="to-top-button" title="Go To Top" class="hidden fixed bottom-8 right-8 z-50 p-3 bg-sky-500 text-white rounded-full shadow-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-opacity duration-300"><i data-lucide="arrow-up" class="h-6 w-6"></i></button>
+
+    <footer class="border-t border-gray-800"><div class="container mx-auto px-6 py-6 text-center text-gray-500"><p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p></div></footer>
+
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+                const mobileLinks = mobileMenu.getElementsByTagName('a');
+                for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
+            }
+            
+            // Reveal on Scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            if (revealElements.length > 0) {
+                const revealOnScroll = () => { for (let el of revealElements) { if (el.getBoundingClientRect().top < window.innerHeight - 150) { el.classList.add('visible'); } } };
+                window.addEventListener('scroll', revealOnScroll);
+                revealOnScroll();
+            }
+
+            // Back to Top Button
+            const toTopButton = document.getElementById('to-top-button');
+            if (toTopButton) {
+                window.addEventListener('scroll', () => { toTopButton.classList.toggle('hidden', document.body.scrollTop < 200 && document.documentElement.scrollTop < 200); });
+                toTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            }
+        });
+    </script>
+</body>
+</html>
