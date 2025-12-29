@@ -28,14 +28,9 @@
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .animated-gradient { background: linear-gradient(300deg, #111827, #1e3a8a, #111827); background-size: 180% 180%; animation: gradient-animation 18s ease infinite; }
         @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        
-        /* New Styles for Daily Section */
-        .daily-card { background: rgba(31, 41, 55, 0.6); border: 1px solid rgba(56, 189, 248, 0.2); backdrop-filter: blur(10px); }
-        .word-title { color: #38BDF8; font-weight: 700; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="antialiased">
-
     <header class="sticky top-0 z-50 glass-effect">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-white"><a href="#">Aditya Das Gupta</a></div>
@@ -64,9 +59,7 @@
             <a href="Aditya_Das_Gupta_CV.pdf" download="Aditya_Das_Gupta_CV.pdf" class="block py-2 px-6 text-sm text-sky-400 hover:bg-gray-700">Download CV</a>
         </div>
     </header>
-
     <main class="container mx-auto px-6">
-
         <section id="home" class="flex flex-col items-center justify-center min-h-[calc(100vh-68px)] animated-gradient">
             <div class="text-center">
                  <div class="flex justify-center mb-8"><img src="project_images/profile.jpg" alt="A professional photo of Aditya Das Gupta" class="w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-sky-400 shadow-2xl"></div>
@@ -80,39 +73,10 @@
             </div>
         </section>
 
-        <section id="daily-dose" class="py-12 reveal">
-            <div class="max-w-5xl mx-auto">
-                <div class="flex items-center justify-center mb-8">
-                    <i data-lucide="book-open" class="text-sky-400 mr-2"></i>
-                    <h2 class="text-2xl font-bold text-white uppercase tracking-wider">Daily IELTS Insight</h2>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="daily-card p-6 rounded-xl text-center transform hover:scale-105 transition duration-300">
-                        <div class="text-xs text-gray-400 uppercase mb-2">Word of the Day 1</div>
-                        <h3 class="text-3xl word-title mb-2" id="vocab-word-1">Loading...</h3>
-                        <p class="text-gray-300 italic" id="vocab-mean-1">...</p>
-                    </div>
-
-                    <div class="daily-card p-6 rounded-xl text-center transform hover:scale-105 transition duration-300 md:col-span-1 flex flex-col justify-center border-sky-500/50">
-                        <div class="text-xs text-gray-400 uppercase mb-3">Daily Inspiration</div>
-                        <blockquote class="text-xl font-medium text-white italic" id="daily-quote">"Loading..."</blockquote>
-                    </div>
-
-                    <div class="daily-card p-6 rounded-xl text-center transform hover:scale-105 transition duration-300">
-                        <div class="text-xs text-gray-400 uppercase mb-2">Word of the Day 2</div>
-                        <h3 class="text-3xl word-title mb-2" id="vocab-word-2">Loading...</h3>
-                        <p class="text-gray-300 italic" id="vocab-mean-2">...</p>
-                    </div>
-                </div>
-                <div class="text-center mt-4 text-xs text-gray-500">Updates automatically every 24 hours</div>
-            </div>
-        </section>
-
         <section id="about" class="py-20 reveal"><h2 class="text-4xl font-bold text-center mb-12 section-heading">About Me</h2><div class="max-w-4xl mx-auto card p-8 rounded-xl"><p class="text-lg leading-relaxed">I am an Electrical and Electronics Engineer from Barisal Engineering College with a strong academic background and hands-on research experience. My undergraduate thesis focused on creating an Explainable AI framework for non-invasive blood glucose prediction, which has been accepted for publication. I possess a diverse technical skill set, including proficiency in engineering software, programming, and design tools. My leadership roles in various college clubs have honed my project management, team collaboration, and communication skills. I am eager to apply my knowledge and skills to a challenging role in the engineering field.</p></div></section>
-
+        
         <section id="skills" class="py-20 bg-gray-900 reveal"><h2 class="text-4xl font-bold text-center mb-12 section-heading">Technical Skills</h2><div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"><div class="card p-6 rounded-xl"><div class="flex items-center mb-4"><i data-lucide="cpu" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Engineering Software</h3></div><div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">AutoCAD</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">LTspice</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Proteus</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Microwind</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Tanner EDA</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">LabVIEW</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span></div></div><div class="card p-6 rounded-xl"><div class="flex items-center mb-4"><i data-lucide="code-2" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Programming & Simulation</h3></div><div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">C++</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Java</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">MATLAB</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Visual Studio</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Anaconda</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Google Colab</span></div></div><div class="card p-6 rounded-xl"><div class="flex items-center mb-4"><i data-lucide="palette" class="h-8 w-8 text-sky-400"></i><h3 class="text-2xl font-semibold ml-4 text-white">Design & Video</h3></div><div class="flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Photoshop</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Illustrator</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Canva</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe Premiere Pro</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Adobe After Effects</span></div></div></div></section>
-
+        
         <section id="experience" class="py-20 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Research & Publications</h2>
             <div class="max-w-4xl mx-auto">
@@ -154,22 +118,20 @@
                     <span class="font-medium text-white">IEEE International Conference on Power, Electrical, Electronics & Industrial Applications (PEEIACON 2025)</span>, to be held on December 4–5, 2025, at Southeast University (SEU) ,Dhaka, Bangladesh. Accepted papers will be submitted forinclusion in <span class="font-medium text-white">IEEE Xplore</span>.
                     </p> 
                 </div>
+            </div>
+        </section>
 
-                
         <section id="projects" class="py-20 bg-gray-900 reveal">
             <h2 class="text-4xl font-bold text-center mb-12 section-heading">Projects</h2>
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">AgriTech: SMS Thermostat</h3><p class="mt-3 text-gray-300 flex-grow">An off-grid, automated thermostat for farms that uses SMS for 24/7 remote monitoring and control of heating and cooling.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Arduino</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">GSM (SMS)</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">C++</span></div><div class="mt-6 flex space-x-4"><a href="agritech-project.html" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></a></div></div>
-
                 <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">Focus Guard: IoT Productivity System</h3><p class="mt-3 text-gray-300 flex-grow">A tangible IoT device and native Android app built to manage phone distractions and track focus statistics automatically.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Android (Kotlin)</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">ESP8266</span></div><div class="mt-6 flex space-x-4"><a href="focus-guard-project.html" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></a></div></div>
-
                 <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">AI Blood Glucose Predictor</h3><p class="mt-3 text-gray-300 flex-grow">Developed the AI model from my thesis research, using Python and TensorFlow to predict blood glucose levels from non-invasive data using XAI.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">Python</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">XAI</span></div><div class="mt-6 flex space-x-4"><a href="ai-glucose-project.html" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></a></div></div>
                 
                 <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">Smart Cactus Pot with IoT & ML</h3><p class="mt-3 text-gray-300 flex-grow">A self-sustaining, solar-powered smart pot that monitors cactus health via Blynk and uses an Isolation Forest model to detect anomalies.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Machine Learning</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">ESP8266</span></div><div class="mt-6 flex space-x-4"><a href="cactus-pot-project.html" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></a></div></div>
                 
                 <div class="card p-6 rounded-xl flex flex-col"><h3 class="text-2xl font-semibold text-white">Smart Tank: Water Management</h3><p class="mt-3 text-gray-300 flex-grow">An automated IoT system for managing water levels across multiple tanks using an ESP8266, sensors, and a custom Android app with MQTT.</p><div class="mt-4 flex flex-wrap gap-2"><span class="tag text-sm font-medium px-3 py-1 rounded-full">IoT</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">Android</span><span class="tag text-sm font-medium px-3 py-1 rounded-full">MQTT</span></div><div class="mt-6 flex space-x-4"><a href="smart-tank-project.html" class="inline-flex items-center text-sky-400 hover:text-sky-300 transition">Read More <i data-lucide="arrow-right" class="h-4 w-4 ml-2"></i></a></div></div>
-
             </div>
         </section>
 
@@ -251,72 +213,15 @@
         </section>
 
         <section id="contact" class="py-20 bg-gray-900 reveal"><h2 class="text-4xl font-bold text-center mb-4 section-heading">Get In Touch</h2><p class="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Have a question or want to work together? Leave your details and I'll get back to you as soon as possible.</p><form action="https://formspree.io/f/your_form_id" method="POST" class="max-w-xl mx-auto text-left"><div class="mb-4"><label for="name" class="block text-gray-300 mb-2">Name</label><input type="text" id="name" name="name" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-sky-500" required></div><div class="mb-4"><label for="email" class="block text-gray-300 mb-2">Email</label><input type="email" id="email" name="email" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-sky-500" required></div><div class="mb-4"><label for="message" class="block text-gray-300 mb-2">Message</label><textarea id="message" name="message" rows="4" class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-sky-500" required></textarea></div><div class="text-center"><button type="submit" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">Send Message</button></div></form><div class="mt-12 flex justify-center space-x-6"><a href="https://www.linkedin.com/in/aditya-das-gupta" target="_blank" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="linkedin" class="h-8 w-8"></i></a><a href="mailto:aditya.duengg@bec.edu.bd" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="mail" class="h-8 w-8"></i></a><a href="tel:+8801880301030" class="text-gray-400 hover:text-sky-400 transition"><i data-lucide="phone" class="h-8 w-8"></i></a></div></section>
-
     </main>
     
     <button id="to-top-button" title="Go To Top" class="hidden fixed bottom-8 right-8 z-50 p-3 bg-sky-500 text-white rounded-full shadow-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-sky-500 transition-opacity duration-300"><i data-lucide="arrow-up" class="h-6 w-6"></i></button>
-
     <footer class="border-t border-gray-800"><div class="container mx-auto px-6 py-6 text-center text-gray-500"><p>&copy; 2025 Aditya Das Gupta. All Rights Reserved.</p></div></footer>
-
     <script>
         lucide.createIcons();
-
-        // --- IELTS DAILY CONTENT DATABASE ---
-        // You can add more lines here up to 500.
-        const ieltsDatabase = [
-            { w1: "Aberration", m1: "A departure from what is normal or expected.", w2: "Belligerent", m2: "Hostile and aggressive.", q: "Success is not final, failure is not fatal: It is the courage to continue that counts." },
-            { w1: "Cacophony", m1: "A harsh, discordant mixture of sounds.", w2: "Debilitate", m2: "Make (someone) very weak and infirm.", q: "The only way to do great work is to love what you do." },
-            { w1: "Ebullient", m1: "Cheerful and full of energy.", w2: "Facetious", m2: "Treating serious issues with inappropriate humor.", q: "Believe you can and you're halfway there." },
-            { w1: "Garrulous", m1: "Excessively talkative.", w2: "Hackneyed", m2: "(of a phrase or idea) lacking significance through having been overused.", q: "Your time is limited, don't waste it living someone else's life." },
-            { w1: "Iconoclast", m1: "A person who attacks cherished beliefs or institutions.", w2: "Juxtapose", m2: "Place or deal with close together for contrasting effect.", q: "The future belongs to those who believe in the beauty of their dreams." },
-            { w1: "Kinetic", m1: "Relating to or resulting from motion.", w2: "Languid", m2: "(of a person, manner, or gesture) displaying or having a disinclination for physical exertion or effort.", q: "Don't watch the clock; do what it does. Keep going." },
-            { w1: "Maelstrom", m1: "A powerful whirlpool in the sea or a river.", w2: "Nefarious", m2: "(typically of an action or activity) wicked or criminal.", q: "Everything you’ve ever wanted is on the other side of fear." },
-            { w1: "Obfuscate", m1: "Render obscure, unclear, or unintelligible.", w2: "Palliate", m2: "Make (a disease or its symptoms) less severe or unpleasant without removing the cause.", q: "Opportunities don't happen. You create them." },
-            { w1: "Quixotic", m1: "Exceedingly idealistic; unrealistic and impractical.", w2: "Recalcitrant", m2: "Having an obstinately uncooperative attitude toward authority.", q: "It always seems impossible until it's done." },
-            { w1: "Sagacity", m1: "The quality of being sagacious (wise).", w2: "Taciturn", m2: "(of a person) reserved or uncommunicative in speech; saying little.", q: "Happiness is not something ready made. It comes from your own actions." },
-            { w1: "Ubiquitous", m1: "Present, appearing, or found everywhere.", w2: "Vacillate", m2: "Alternate or waver between different opinions or actions; be indecisive.", q: "Do what you can, with what you have, where you are." },
-            { w1: "Wane", m1: "(of a state or feeling) decrease in vigour, power, or extent; become weaker.", w2: "Zealous", m2: "Having or showing zeal (great energy or enthusiasm).", q: "The secret of getting ahead is getting started." },
-            { w1: "Abate", m1: "(of something perceived as hostile, threatening, or negative) become less intense or widespread.", w2: "Benevolent", m2: "Well meaning and kindly.", q: "I find that the harder I work, the more luck I seem to have." },
-            { w1: "Candid", m1: "Truthful and straightforward; frank.", w2: "Deference", m2: "Humble submission and respect.", q: "Success usually comes to those who are too busy to be looking for it." },
-            { w1: "Egregious", m1: "Outstandingly bad; shocking.", w2: "Ferocity", m2: "The state or quality of being ferocious.", q: "Don't be afraid to give up the good to go for the great." },
-            { w1: "Galvanize", m1: "Shock or excite (someone) into taking action.", w2: "Hierarchy", m2: "A system or organization in which people or groups are ranked one above the other according to status or authority.", q: "I failed my way to success." },
-            { w1: "Impartial", m1: "Treating all rivals or disputants equally; fair and just.", w2: "Jadish", m2: "Of, relating to, or resembling a jade; vicious; ill-tempered.", q: "If you are not willing to risk the usual, you will have to settle for the ordinary." },
-            { w1: "Keen", m1: "Having or showing eagerness or enthusiasm.", w2: "Lament", m2: "A passionate expression of grief or sorrow.", q: "Stop chasing the money and start chasing the passion." },
-            { w1: "Malicious", m1: "Characterized by malice; intending or intended to do harm.", w2: "Novel", m2: "New or unusual in an interesting way.", q: "Success is walking from failure to failure with no loss of enthusiasm." },
-            { w1: "Objectivity", m1: "The quality of being objective (impartial).", w2: "Paramount", m2: "More important than anything else; supreme.", q: "The only place where success comes before work is in the dictionary." },
-            { w1: "Qualitative", m1: "Relating to, measuring, or measured by the quality of something rather than its quantity.", w2: "Ramification", m2: "A consequence of an action or event, especially when complex or unwelcome.", q: "If you really look closely, most overnight successes took a long time." },
-            { w1: "Scrutinize", m1: "Examine or inspect closely and thoroughly.", w2: "Tentative", m2: "Not certain or fixed; provisional.", q: "The real test is not whether you avoid this failure, because you won't. It's whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere." },
-            { w1: "Unprecedented", m1: "Never done or known before.", w2: "Validate", m2: "Check or prove the validity or accuracy of (something).", q: "There are no secrets to success. It is the result of preparation, hard work, and learning from failure." },
-            { w1: "Warrant", m1: "Justify or necessitate (a certain course of action).", w2: "Yield", m2: "Produce or provide (a natural, agricultural, or industrial product).", q: "I strongly believe that missionaries are the most influential people in the world." },
-            { w1: "Abstract", m1: "Existing in thought or as an idea but not having a physical or concrete existence.", w2: "Bolster", m2: "Support or strengthen; prop up.", q: "If you can dream it, you can do it." },
-            { w1: "Coincide", m1: "Occur at or during the same time.", w2: "Diligence", m2: "Careful and persistent work or effort.", q: "The way to get started is to quit talking and begin doing." },
-            { w1: "Eloquent", m1: "Fluent or persuasive in speaking or writing.", w2: "Fluctuate", m2: "Rise and fall irregularly in number or amount.", q: "Even if you fall on your face, you're still moving forward." },
-            { w1: "Geriatric", m1: "Relating to old people, especially with regard to their healthcare.", w2: "Hypothetical", m2: "Based on or serving as a hypothesis.", q: "Very often a change of self is needed more than a change of scene." },
-            { w1: "Ignominious", m1: "Deserving or causing public disgrace or shame.", w2: "Jurisdiction", m2: "The official power to make legal decisions and judgments.", q: "Leaders never use the word failure. They look upon setbacks as learning experiences." },
-            { w1: "Knack", m1: "An acquired or natural skill at performing a task.", w2: "Lucrative", m2: "Producing a great deal of profit.", q: "It is better to fail in originality than to succeed in imitation." }
-        ];
-
+        
         // Wait for the DOM to be fully loaded before running scripts
         document.addEventListener("DOMContentLoaded", () => {
-            // Daily Content Logic
-            const updateDailyContent = () => {
-                const now = new Date();
-                const start = new Date(now.getFullYear(), 0, 0);
-                const diff = now - start;
-                const oneDay = 1000 * 60 * 60 * 24;
-                const dayIndex = Math.floor(diff / oneDay);
-                
-                // Use modulo to cycle through the array if we run out of unique days
-                const todayContent = ieltsDatabase[dayIndex % ieltsDatabase.length];
-
-                document.getElementById('vocab-word-1').innerText = todayContent.w1;
-                document.getElementById('vocab-mean-1').innerText = todayContent.m1;
-                document.getElementById('vocab-word-2').innerText = todayContent.w2;
-                document.getElementById('vocab-mean-2').innerText = todayContent.m2;
-                document.getElementById('daily-quote').innerText = `"${todayContent.q}"`;
-            };
-            updateDailyContent();
-
             // Mobile Menu Toggle
             const menuBtn = document.getElementById('menu-btn'), mobileMenu = document.getElementById('mobile-menu');
             if (menuBtn && mobileMenu) {
@@ -341,7 +246,6 @@
                 window.addEventListener('scroll', revealOnScroll);
                 revealOnScroll();
             }
-
             // Back to Top Button
             const toTopButton = document.getElementById('to-top-button');
             if (toTopButton) {
