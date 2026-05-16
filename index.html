@@ -33,8 +33,6 @@
         .tag { background-color: #F3F4F6; color: #374151; border: 1px solid #E5E7EB; }
         .card { background-color: #FFFFFF; border: 1px solid #E5E7EB; transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
-        .typed-cursor { animation: blink 0.7s infinite; color: #1D4ED8; }
-        @keyframes blink { 50% { opacity: 0; } }
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .formal-bg { background-color: #FFFFFF; background-image: radial-gradient(#E5E7EB 1px, transparent 1px); background-size: 20px 20px; }
@@ -75,7 +73,7 @@
                  <div class="flex justify-center mb-8"><img src="project_images/profile.jpg" alt="A professional photo of Aditya Das Gupta" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-white shadow-lg"></div>
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">Aditya Das Gupta</h1>
                 <p class="text-sm text-gray-500 mt-2 font-medium"> ORCID: 0009-0000-1466-7525 </p>
-                <p class="text-2xl mt-3 text-blue-700 font-medium h-8"><span id="typed-text"></span></p>
+                <p class="text-2xl mt-3 text-blue-700 font-medium h-8">Electrical & Electronics Engineer | Explainable AI Researcher</p>
                 <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">A recent graduate with a passion for leveraging technology to solve real-world problems, specializing in Explainable AI and its applications in medical technology.</p>
                 <div class="mt-8 flex flex-wrap justify-center gap-4">
                     <a href="mailto:aditya.duengg@bec.edu.bd" class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-6 rounded-md transition duration-300 flex items-center shadow-sm"><i data-lucide="mail" class="mr-2 h-5 w-5"></i> Email Me</a>
@@ -464,15 +462,6 @@
                 menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
                 const mobileLinks = mobileMenu.getElementsByTagName('a');
                 for (let link of mobileLinks) { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }
-            }
-            
-            // Typing Animation
-            const typedTextSpan = document.getElementById('typed-text'), textArray = ["Electrical & Electronics Engineer", "AI Enthusiast", "Tech Innovator"];
-            if (typedTextSpan && textArray.length > 0) {
-                let textArrayIndex = 0, charIndex = 0;
-                function type() { if (charIndex < textArray[textArrayIndex].length) { typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex++); setTimeout(type, 100); } else { setTimeout(erase, 2000); } }
-                function erase() { if (charIndex > 0) { typedTextSpan.textContent = textArray[textArrayIndex].substring(0, --charIndex); setTimeout(erase, 50); } else { textArrayIndex = ++textArrayIndex % textArray.length; setTimeout(type, 1200); } }
-                setTimeout(type, 2250);
             }
             
             // Reveal on Scroll
